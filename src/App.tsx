@@ -10,7 +10,7 @@ function App() {
     isHidde: boolean;
     isHiddeMenu: boolean;
   }
-  //new
+  
   const [loading, setLoading] = useState(true)
   const [actionStatus, setActionStatus] = useState<actionArray>({
     animationStatus: true,
