@@ -1,4 +1,5 @@
-body, html {
+body,
+html {
   margin: 0;
   padding: 0;
   width: 100vw;
@@ -6,7 +7,74 @@ body, html {
   background-color: rgb(226, 226, 226);
 }
 
-.buttonMenu{
+.topMenuContainer {
+  display: grid;
+  grid-template-columns: 12rem 4rem 4rem 7rem;
+  height: 5rem;
+  width: 79.9vw;
+  background-color: rgb(255, 255, 255);
+  justify-content: end;
+}
+
+.lessonProgresContainer,
+.wordsCounterContainer,
+.kanjiCounterContainer,
+.uresLogoContainer {
+  align-content: center;
+  justify-items: center;
+  text-align: center;
+}
+
+.topMenuText {
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-size: 0.9rem;
+  margin: 0;
+  color: rgb(84, 84, 84);
+}
+
+.lessonProgresContainer {
+  justify-items: end;
+  margin-right: 2rem;
+}
+
+.wordsCounterContainer {
+  position: relative;
+}
+
+.kanjiCounterContainer {}
+
+.uresLogoContainer {}
+
+.wordsCounterContainer::after {
+  position: absolute;
+  content: '';
+  width: 2%;
+  height: 60%;
+  background-color: rgba(0, 0, 0, 0.189);
+  transform: translateY(-85%);
+  right: 0;
+}
+
+.progressBar {
+  position: relative;
+  margin-top: 0.2rem;
+  width: 100%;
+  height: 12%;
+  background-color: rgb(193, 224, 238);
+  border-radius: 0.3rem;
+}
+
+.progressBar::before {
+  position: absolute;
+  content: '';
+  width: 20%;
+  height: 100%;
+  left: 0;
+  background-color: rgb(51, 181, 240);
+  border-radius: 0.3rem;
+}
+
+.buttonMenu {
   display: flex;
   background: none;
   border-width: 0;
@@ -23,24 +91,31 @@ body, html {
   cursor: pointer;
 }
 
-.buttonMenu:hover{
+.buttonMenu:hover {
   background-color: rgb(205, 232, 255);
   border-radius: 0.7rem;
 }
 
-.logoImage{
+.logoImage {
   width: 100%;
   height: 5rem;
   background-color: rgb(205, 232, 255);
   text-align: center;
   align-content: center;
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-  font-size: 2.7rem;
+  font-size: clamp(1rem, 2.9vw, 2.7rem);
   font-weight: bold;
-  color: rgb(56, 135, 205);;
+  color: rgb(56, 135, 205);
+  ;
 }
 
-.logo, .home, .lessons, .cards, .kanji, .test, .vocabulary{
+.logo,
+.home,
+.lessons,
+.cards,
+.kanji,
+.test,
+.vocabulary {
   width: 1.2rem;
   height: 1.2rem;
   border-radius: 0.3rem;
@@ -49,37 +124,37 @@ body, html {
   align-content: center;
 }
 
-.home{
+.home {
   background-image: url(icons/home.png);
   background-size: contain;
 }
 
-.lessons{
+.lessons {
   background-image: url(icons/book.png);
   background-size: contain;
 }
 
-.cards{
+.cards {
   background-image: url(icons/files.png);
   background-size: contain;
 }
 
-.kanji{
+.kanji {
   background-image: url(icons/japan.png);
   background-size: contain;
 }
 
-.test{
+.test {
   background-image: url(icons/check.png);
   background-size: contain;
 }
 
-.vocabulary{
+.vocabulary {
   background-image: url(icons/dictionary.png);
   background-size: contain;
 }
 
-.settContainer{
+.settContainer {
   display: flex;
   gap: 0.3rem;
   position: absolute;
@@ -93,160 +168,203 @@ body, html {
   cursor: pointer;
 }
 
-.settContainer:hover{
+.settContainer:hover {
   background-color: rgb(205, 232, 255);
 }
 
-.settings{
+.settings {
   background-image: url(icons/setting.png);
   background-size: contain;
   width: 1.5rem;
   height: 1.5rem;
 }
 
-.settingsText{
+.settingsText {
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
-.gridContainer{
+.gridContainer {
   display: grid;
   justify-content: center;
   grid-template-columns: auto auto auto;
 }
 
-.gridItemLeft, .gridItemMiddle, .gridItemRight{
+.gridItemLeft,
+.gridItemMiddle {
   display: flex;
   flex-direction: column;
   align-items: center;
   background-color: rgb(255, 255, 255);
+}
+
+.gridItemLeft {
+  width: 20vw;
+  transition: 0.3s;
   height: 100vh;
 }
 
-.gridItemLeft, .gridItemRight{
-  width: 15vw;
+.gridItemMiddle {
+  padding: 1rem;
+  width: 77.5vw;
+  background-color: rgb(249, 249, 249);
+  overflow-x: scroll;
+  height: 87.6vh;
+  box-shadow: 0.1rem 0.1rem 0.5rem rgba(0, 0, 0, 0.094) inset;
+}
+
+.gridHome {
+  display: grid;
+  grid-template-columns: 25% 25% 25%;
+  gap: 3vw;
+  justify-content: center;
+  width: 100%;
+}
+
+.learningContainer
+
+.practiceContainer{
+  margin-top: 1.5rem;
+  position: relative;
+  display: grid;
+  grid-template-rows: auto;
+  gap: 2rem;
+  width: 100%;
+  align-items: center;
+}
+
+.scoreContainer {
+  position: relative;
+  padding: 1rem;
+  width: 86%;
+  height: 6rem;
+  background-color: rgb(255, 255, 255);
+  border-radius: 0.5rem;
+  border-style: solid;
+  border-width: 0.1rem;
+  border-color: rgb(221, 221, 221);
+  box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.073);
+}
+
+.selectPractice{
+  display: grid;
+  grid-template-columns: auto auto;
+  position: relative;
+  padding: 1rem;
+  width: 100% - 2rem;
+  height: 2rem;
+  background-color: rgb(255, 255, 255);
+  border-radius: 0.5rem;
+  border-style: solid;
+  border-width: 0.1rem;
+  border-color: rgb(221, 221, 221);
+  box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.073);
+  align-content: center;
+  cursor: pointer;
   transition: 0.3s;
 }
 
-.hiddeSlide{
-  animation: hidde ease-out 0.3s forwards;
+.selectPractice:hover{
+  scale: 105%;
 }
 
-.appearSlide{
-  animation: appear ease-in 0.3s forwards;
-}
-
-.hiddeSlideMenu{
-  animation: hiddeMenu ease-out 0.3s forwards;
-}
-
-.appearSlideMenu{
-  animation: appearMenu ease-in 0.3s forwards;
-}
-
-@keyframes hiddeMenu {
-  from{transform: translateX(0vw)}
-  to{transform: translateX(-15vw)}
-}
-
-@keyframes appearMenu {
-  from{transform: translateX(-15vw)}
-  to{transform: translateX(0vw)}
-}
-
-@keyframes hidde {
-  from{transform: translateX(0vw)}
-  to{transform: translateX(15vw)}
-}
-
-@keyframes appear {
-  from{transform: translateX(15vw)}
-  to{transform: translateX(0vw)}
-}
-
-.hiddeButton{
-  margin-right: auto;
-  margin-top: 0.4rem;
-  transform: translateX(-120%);
-  background-color: rgb(255, 255, 255);
-  box-shadow: 0 0.2rem 0.5rem rgba(0, 0, 0, 0.113);
-  width: 2.2rem;
-  height: 2.2rem;
-  border-radius: 0.4rem;
-  text-align: center;
-  align-content: center;
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-  font-size: large;
-  cursor: pointer;
-  z-index: 20;
-}
-
-.hiddeButtonMenu{
+.scoreLogoLessons,
+.scoreLogoKanji,
+.scoreLogoWords {
   position: absolute;
-  margin-left: auto;
-  margin-top: 0.4rem;
-  transform: translateX(380%);
-  background-color: rgb(255, 255, 255);
-  box-shadow: 0 0.2rem 0.5rem rgba(0, 0, 0, 0.113);
-  width: 2.2rem;
-  height: 2.2rem;
-  border-radius: 0.4rem;
-  text-align: center;
-  align-content: center;
+  top: 0;
+  right: 0;
+  margin: 1rem 1rem 0 0;
+  height: 2.5rem;
+  width: 2.5rem;
+  border-radius: 0.3rem;
+  background-color: rgb(177, 219, 255);
+}
+
+.scoreLogoLessons {
+  background-image: url(icons/book.png);
+  background-size: cover;
+}
+
+.scoreLogoKanji {
+  background-image: url(icons/japan.png);
+  background-size: cover;
+}
+
+.scoreLogoWords {
+  background-image: url(icons/dictionary.png);
+  background-size: cover;
+}
+
+.h1Welcom,
+.pWelcom,
+.textHome,
+.h1Home,
+.h2Welcom,
+.textHomeC,
+.textHomeNext {
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-  font-size: large;
-  cursor: pointer;
-  z-index: 20;
 }
 
-.gridItemMiddle{
-  width: 70vw;
-  background-color: rgb(249, 249, 249);
-  overflow-x: scroll;
+.textHomeC{
+  margin: 0;
 }
 
-.mainBar{
-  text-align: center;
-  margin-top: 4vh;
-  background-color: rgba(191, 0, 255, 0.152);
-  width: 80%;
-  min-height: 30vh;
-  border-radius: 0.5rem;
+.textHomeNext{
+  justify-self: end;
+  margin: 0;
 }
 
-.middleActions{
-  align-items: center;
-  justify-items: center;
-  display: grid;
-  grid-template-columns: auto auto auto auto;
-  margin-top: 4vh;
-  width: 50vw;
-  border-radius: 0.5rem;
+.pWelcom {
+  margin-top: 0;
+  color: rgb(90, 90, 90);
 }
 
-.userPhoto{
-  width: 7vw;
-  height: 7vw;
-  border-radius: 50%;
-  align-content: center;
-  text-align: center;
-  background-color: rgb(255, 255, 255);
-  border: 10px rgba(191, 0, 255, 0.526) solid;
-  margin-bottom: 3vh;
+.textHome {
+  margin-top: 1rem;
+  font-size: 0.9rem;
 }
 
-.contenContainer, .contenContainerForUser{
-  align-items: center;
-  justify-items: center;
-  text-align: center;
-  margin-top: 4vh;
-  background-color: rgb(215, 215, 215);
-  width: 80%;
+.h1Home {
+  position: absolute;
+  bottom: 0;
+  margin-bottom: 2rem;
+}
+
+.headText {
+  width: 93%;
+  justify-self: center;
   height: fit-content;
-  border-radius: 0.5rem;
-  transition: 1s;
+  margin-bottom: 1.5rem;
 }
 
-.loadingBox{
+.h1Welcom,
+.h2Welcom {
+  margin: 0;
+}
+
+.h1Welcom{
+  margin-top: 1rem;
+}
+
+.learningContainer {
+  margin-top: 2rem;
+  justify-self: center;
+  padding: 2rem;
+  background-color: rgb(255, 255, 255);
+  border-radius: 0.5rem;
+  border-style: solid;
+  border-width: 0.1rem;
+  border-color: rgb(221, 221, 221);
+  box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.073);
+  width: 90%;
+  height: fit-content;
+}
+
+.middleActions {
+  width: 100%;
+}
+
+.loadingBox {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -264,7 +382,9 @@ body, html {
   z-index: 9;
 }
 
-.loadingItem1, .loadingItem2, .loadingItem3{
+.loadingItem1,
+.loadingItem2,
+.loadingItem3 {
   position: relative;
   justify-content: center;
   align-content: center;
@@ -275,64 +395,75 @@ body, html {
   animation: jump 1s infinite ease-in-out;
 }
 
-.loadingItem1{
+.loadingItem1 {
   animation-delay: 0s;
 }
-.loadingItem2{
+
+.loadingItem2 {
   animation-delay: 0.2s;
 }
-.loadingItem3{
+
+.loadingItem3 {
   animation-delay: 0.4s;
 }
 
 @keyframes jump {
-  0%{top: 0.5rem}
-  50%{top: -0.5rem}
-  100%{top: 0.5rem}
+  0% {
+    top: 0.5rem
+  }
+
+  50% {
+    top: -0.5rem
+  }
+
+  100% {
+    top: 0.5rem
+  }
 }
 
-.in{
+.in {
   animation: uppearing ease-in-out forwards 0.5s;
 }
 
-.out{
+.out {
   animation: outing ease-in-out forwards 0.5s;
 }
 
-@keyframes uppearing{
-  from{top: -20vw}
-  to{top: 10vw}
-}
-
-@keyframes outing{
-  from{top: 10vw}
-  to{top: -30vw}
-}
-
 @keyframes enter {
-  from{opacity: 0%;}
-  to{opacity: 100%;}
+  from {
+    opacity: 0%;
+  }
+
+  to {
+    opacity: 100%;
+  }
 }
 
 @keyframes exit {
-  from{opacity: 100%;}
-  to{opacity: 0%;}
+  from {
+    opacity: 100%;
+  }
+
+  to {
+    opacity: 0%;
+  }
 }
 
-.middleContent{
+.middleContent {
+  width: 100%;
   transition: 0.3s;
   opacity: 0%;
 }
 
-.start{
+.start {
   opacity: 100%;
 }
 
-.end{
+.end {
   opacity: 0%;
 }
 
-.pagesDiv{
+.pagesDiv {
   height: 10rem;
   width: 10rem;
   background-color: rgb(212, 212, 212);
@@ -341,7 +472,7 @@ body, html {
   border-radius: 1.7rem;
 }
 
-.testPageContainer{
+.testPageContainer {
   padding: 1rem;
   margin-top: 1rem;
   height: 100%;
@@ -351,30 +482,33 @@ body, html {
   border-radius: 0.7rem;
 }
 
-.remove{
+.remove {
   display: none;
 }
 
-.testPageEnter{
+.testPageEnter {
+  width: 100%;
   animation: enter ease-out 1s forwards;
 }
 
-.testPageExit{
+.testPageExit {
+  width: 100%;
   animation: exit ease-out 1s forwards;
 }
 
-.h1Lesson{
+.h1Lesson {
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
   margin: 0;
 }
 
-.pLesson, .pLessonText{
+.pLesson,
+.pLessonText {
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
   color: rgb(138, 138, 138);
   margin: 0;
 }
 
-.lessonsContainer{
+.lessonsContainer {
   width: 100%;
   height: 47vh;
   padding-top: 0.5rem;
@@ -386,20 +520,20 @@ body, html {
   overflow-y: scroll;
 }
 
-.h2Lesson{
+.h2Lesson {
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
   font-size: 1.2rem;
   color: rgb(72, 72, 72);
 }
 
-.categoriesContainer{
+.categoriesContainer {
   margin-top: 6vh;
   width: 100%;
   height: 12vh;
   background-color: rgb(255, 255, 255);
 }
 
-.buttonContainer{
+.buttonContainer {
   margin-left: 1rem;
   width: 28%;
   display: grid;
@@ -407,7 +541,7 @@ body, html {
   gap: 1rem;
 }
 
-.categoriesButton{
+.categoriesButton {
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
   font-size: 0.9rem;
   height: 2.2rem;
@@ -421,11 +555,11 @@ body, html {
   transition: 0.4s;
 }
 
-.categoriesButton:hover{
+.categoriesButton:hover {
   background-color: rgb(95, 171, 237)
 }
 
-.lessonSelector{
+.lessonSelector {
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
   font-size: 1.1rem;
   font-weight: bold;
@@ -441,18 +575,18 @@ body, html {
   transition: 0.4s;
 }
 
-.lessonSelector:hover{
+.lessonSelector:hover {
   scale: 110%;
   transform: translateY(-0.2rem);
   background-color: rgb(235, 235, 235);
 }
 
-.practisContainer{
+.practisContainer {
   width: 100%;
   height: 100%;
 }
 
-.exContainer{
+.exContainer {
   width: 100%;
   height: 70%;
   box-sizing: border-box;
@@ -460,7 +594,7 @@ body, html {
   padding-top: 1rem;
 }
 
-.inputQ{
+.inputQ {
   justify-self: center;
   align-content: center;
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
@@ -481,7 +615,7 @@ body, html {
   border-style: solid;
 }
 
-.testSection{
+.testSection {
   display: grid;
   text-align: center;
   justify-content: center;
@@ -497,7 +631,9 @@ body, html {
   margin-top: 1rem;
 }
 
-.doneButton, .exitButton, .cardButton{
+.doneButton,
+.exitButton,
+.cardButton {
   margin-top: 1rem;
   width: 7rem;
   min-height: fit-content;
@@ -513,11 +649,11 @@ body, html {
   cursor: pointer;
 }
 
-.doneButton:hover{
+.doneButton:hover {
   background-color: rgb(242, 242, 242);
 }
 
-.wordsSelector{
+.wordsSelector {
   min-width: fit-content;
   min-height: fit-content;
   padding: 0.8rem;
@@ -530,15 +666,15 @@ body, html {
   cursor: pointer;
 }
 
-.correct{
+.correct {
   box-shadow: 0 0 0.5rem rgb(29, 255, 67);
 }
 
-.active{
+.active {
   background-color: rgb(80, 133, 179);
 }
 
-.practiceDonePageContainer{
+.practiceDonePageContainer {
   display: grid;
   grid-template-columns: auto;
   gap: 1rem;
@@ -546,13 +682,13 @@ body, html {
   justify-items: center;
 }
 
-.cardContainerOne{
+.cardContainerOne {
   width: 100%;
   height: 70%;
   justify-items: center;
 }
 
-.card{
+.card {
   text-align: center;
   justify-content: center;
   align-items: center;
@@ -568,7 +704,7 @@ body, html {
   margin: 1rem 0 0 0;
 }
 
-.japanWord{
+.japanWord {
   position: relative;
   align-content: center;
   font-size: 1.7rem;
@@ -576,7 +712,7 @@ body, html {
   height: 33.3%;
 }
 
-.meaning{
+.meaning {
   position: relative;
   align-content: center;
   font-size: 1.3rem;
@@ -584,13 +720,14 @@ body, html {
   height: 33.3%;
 }
 
-.buttonContainerCard{
+.buttonContainerCard {
   position: relative;
   height: 33.3%;
   align-content: center;
 }
 
-.japanWord::after, .buttonContainerCard::after{
+.japanWord::after,
+.buttonContainerCard::after {
   position: absolute;
   bottom: 0;
   left: 0;
@@ -600,27 +737,27 @@ body, html {
   background-color: rgb(125, 125, 125);
 }
 
-.buttonContainerCard::after{
+.buttonContainerCard::after {
   top: 0;
   background-color: rgb(125, 125, 125);
 }
 
-.cardButton{
+.cardButton {
   margin-top: 0;
   width: fit-content;
   background-color: rgb(148, 205, 255);
   margin: 0 0.2rem 0 0.2rem;
 }
 
-.cardButton:hover{
+.cardButton:hover {
   background-color: rgb(121, 180, 233);
 }
 
-.hidde{
+.hidde {
   visibility: hidden;
 }
 
-.cardConteiner{
+.cardConteiner {
   height: 60%;
   width: 60%;
   background-color: rgb(235, 235, 235);
@@ -631,23 +768,20 @@ body, html {
   transition: 0.3s;
 }
 
-.contenContainerForUser{
+.contenContainerForUser {
   background-color: rgba(240, 248, 255, 0);
   margin-bottom: 4vh;
 }
 
-.vocabContainer{
+.vocabContainer {
+  padding: 1rem 0 0 2rem;
   overflow-y: scroll;
-  padding: 1rem;
-  margin-top: 1rem;
-  height: 92vh;
-  width: 65vw;
-  background-color: rgb(255, 255, 255);
-  box-shadow: 0 0.2rem 6rem rgba(0, 0, 0, 0.054);
+  height: 100%;
+  width: 100%;
   border-radius: 0.7rem;
 }
 
-.vocGrid{
+.vocGrid {
   margin-top: 2rem;
   align-items: center;
   justify-content: center;
@@ -658,7 +792,7 @@ body, html {
   grid-template-columns: auto auto auto auto;
 }
 
-.wordHolderContainer{
+.wordHolderContainer {
   text-align: center;
   align-content: center;
   width: 10rem;
@@ -669,22 +803,22 @@ body, html {
   transition: 0.3s;
 }
 
-.wordHolderContainer:hover{
+.wordHolderContainer:hover {
   scale: 120%;
   background-color: rgb(221, 221, 221);
 }
 
-.word{
+.word {
   font-size: large;
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
-.lessonsArray{
+.lessonsArray {
   height: 100%;
   margin-top: 3rem;
 }
 
-.pLessonText{
+.pLessonText {
   color: rgb(0, 0, 0);
   margin: 3rem 0 0 3rem;
 }

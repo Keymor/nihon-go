@@ -10,7 +10,7 @@ function App() {
     isHidde: boolean;
     isHiddeMenu: boolean;
   }
-  
+
   const [loading, setLoading] = useState(true)
   const [actionStatus, setActionStatus] = useState<actionArray>({
     animationStatus: true,
@@ -1022,9 +1022,44 @@ function App() {
       case 'Home':
         return (
           <div className={`middleContent ${actionStatus.animationStatus ? 'testPageEnter' : 'testPageExit'}`}>
-            <div className='mainBar'></div>
+
             <div className='middleActions'>
-              <p>
+              <div className='headText'>
+                <h1 className='h1Welcom'>Welcom!</h1>
+                <p className='pWelcom'>Continue your journey to mastering Japanese.</p>
+              </div>
+              <div className='gridHome'>
+                <div className='scoreContainer'>
+                  <p className='textHome'>Lessons complite</p>
+                  <h1 className='h1Home'> 2/25</h1>
+                  <div className='scoreLogoLessons'></div>
+                </div>
+                <div className='scoreContainer'>
+                  <p className='textHome'>Mastered word</p>
+                  <h1 className='h1Home'> 26/150</h1>
+                  <div className='scoreLogoWords'></div>
+                </div>
+                <div className='scoreContainer'>
+                  <p className='textHome'>Kanji</p>
+                  <h1 className='h1Home'> 12/100</h1>
+                  <div className='scoreLogoKanji'></div>
+                </div>
+              </div>
+              <div className='learningContainer'>
+                <h2 className='h2Welcom'>Continue Learning</h2>
+                <div className='practiceContainer'>
+                  <div className='selectPractice'>
+                    <p className='textHomeC'>Lesson 3</p>
+                    <p className='textHomeNext'>→ Continue</p>
+                  </div>
+                  <div className='selectPractice'>
+                    <p className='textHomeC'>Kanji prectice</p>
+                    <p className='textHomeNext'>→ Continue</p>
+                  </div>
+                </div>
+              </div>
+              <div>
+                {/* <p className='pHome'>
                 Welcome to <b>Japanese language learning</b> site!
                 Designed for learners of all levels, this site offers a structured approach to mastering the
                 language through practical examples, grammar explanations, and extensive vocabulary.
@@ -1038,7 +1073,8 @@ function App() {
                 <br />
                 With features inspired by the textbook and modern educational tools, this site is the perfect
                 companion for anyone to achieve their language goals.
-              </p>
+                </p> */}
+              </div>
             </div>
           </div>
         )
@@ -1384,10 +1420,7 @@ function App() {
     <div className='body'>
       {loadingAnim()}
       <div className='gridContainer'>
-        <div className={`gridItemLeft ${actionStatus.isHiddeMenu ? 'hiddeSlideMenu' : 'appearSlideMenu'}`}>
-        <div className='hiddeButtonMenu' onClick={
-            () => setActionStatus((a) => ({ ...a, isHiddeMenu: !actionStatus.isHiddeMenu }))
-          }>=</div>
+        <div className='gridItemLeft'>
           <div className='logoImage'>日本語学習</div>
           <button className='buttonMenu' onClick={() => newPageStatus('Home')}>
             <div className='home'></div>
@@ -1413,32 +1446,32 @@ function App() {
             <div className='vocabulary'></div>
             <span> Vocabulary </span>
           </button>
-        </div>
-        <div className='gridItemMiddle'>
-          {pages()}
-        </div>
-        <div className={`gridItemRight ${actionStatus.isHidde ? 'hiddeSlide' : 'appearSlide'}`}>
-          <div className='hiddeButton' onClick={
-            () => setActionStatus((a) => ({ ...a, isHidde: !actionStatus.isHidde }))
-          }>=</div>
-          <div className='contenContainerForUser'>
-            <div className='userPhoto'>Photo</div>
-            <div>User Name</div>
-          </div>
-          <div className='contenContainer'>
-            Done lessons 0/25
-          </div>
-          <div className='contenContainer'>
-            Learned words 0/150
-          </div>
-          <div className='contenContainer'>
-            Learned Kanji 0/100
-          </div>
           <div className='settContainer'>
             <div className='settings'></div>
             <span className='settingsText'> Settings </span>
           </div>
         </div>
+        <div className='Middle'>
+          <div className='topMenuContainer'>
+            <div className='lessonProgresContainer'>
+              <p className='topMenuText'><b>Lesson Progress</b></p>
+              <div className='progressBar'></div>
+            </div>
+            <div className='wordsCounterContainer'>
+              <p className='topMenuText'><b>Words</b><br />26/150</p>
+            </div>
+            <div className='kanjiCounterContainer'>
+              <p className='topMenuText'><b>Kanji</b><br />12/100</p>
+            </div>
+            <div className='uresLogoContainer'>
+              <p className='topMenuText'>User name</p>
+            </div>
+          </div>
+          <div className='gridItemMiddle'>
+            {pages()}
+          </div>
+        </div>
+
       </div>
     </div>
   )
