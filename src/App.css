@@ -11,7 +11,7 @@ html {
   display: grid;
   grid-template-columns: 12rem 4rem 4rem 7rem;
   height: 5rem;
-  width: 79.9vw;
+  width: 84.9vw;
   background-color: rgb(255, 255, 255);
   justify-content: end;
 }
@@ -156,11 +156,12 @@ html {
 
 .settContainer {
   display: flex;
+  padding: 0 0.5rem 0 0.5rem;
   gap: 0.3rem;
   position: absolute;
   bottom: 0;
   margin-bottom: 1rem;
-  width: 55%;
+  width: fit-content;
   height: 6%;
   justify-content: center;
   align-items: center;
@@ -198,17 +199,18 @@ html {
 }
 
 .gridItemLeft {
-  width: 20vw;
+  width: 15vw;
   transition: 0.3s;
-  height: 100vh;
+  height: 100%;
 }
 
 .gridItemMiddle {
   padding: 1rem;
-  width: 77.5vw;
+  width: 82.5vw;
+  height: 100%;
   background-color: rgb(249, 249, 249);
   overflow-x: scroll;
-  height: 87.6vh;
+  height: 86vh;
   box-shadow: 0.1rem 0.1rem 0.5rem rgba(0, 0, 0, 0.094) inset;
 }
 
@@ -219,8 +221,6 @@ html {
   justify-content: center;
   width: 100%;
 }
-
-.learningContainer
 
 .practiceContainer{
   margin-top: 1.5rem;
@@ -276,23 +276,29 @@ html {
   margin: 1rem 1rem 0 0;
   height: 2.5rem;
   width: 2.5rem;
-  border-radius: 0.3rem;
+  border-radius: 1.5rem;
   background-color: rgb(177, 219, 255);
 }
 
 .scoreLogoLessons {
   background-image: url(icons/book.png);
-  background-size: cover;
+  background-size: 1.9rem;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
 .scoreLogoKanji {
   background-image: url(icons/japan.png);
-  background-size: cover;
+  background-size: 1.9rem;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
 .scoreLogoWords {
   background-image: url(icons/dictionary.png);
-  background-size: cover;
+  background-size: 1.9rem;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
 .h1Welcom,
@@ -361,6 +367,7 @@ html {
 }
 
 .middleActions {
+  position: relative;
   width: 100%;
 }
 
@@ -473,13 +480,10 @@ html {
 }
 
 .testPageContainer {
-  padding: 1rem;
-  margin-top: 1rem;
+  position: relative;
+  padding: 1rem 2rem 0 2rem;
   height: 100%;
   width: 93%;
-  background-color: rgb(255, 255, 255);
-  box-shadow: 0 0.2rem 6rem rgba(0, 0, 0, 0.054);
-  border-radius: 0.7rem;
 }
 
 .remove {
@@ -487,12 +491,10 @@ html {
 }
 
 .testPageEnter {
-  width: 100%;
   animation: enter ease-out 1s forwards;
 }
 
 .testPageExit {
-  width: 100%;
   animation: exit ease-out 1s forwards;
 }
 
@@ -510,14 +512,24 @@ html {
 
 .lessonsContainer {
   width: 100%;
-  height: 47vh;
+  height: fit-content;
   padding-top: 0.5rem;
   justify-content: center;
   align-items: center;
   display: grid;
   grid-template-columns: 15rem 15rem 15rem;
   gap: 1rem 2rem;
-  overflow-y: scroll;
+}
+
+.lessonsArray{
+  grid-template-columns: auto auto auto;
+  gap: 2rem;
+}
+
+.lessonsContainer{
+  margin-top: 2rem;
+  grid-template-columns: auto auto auto;
+  gap: 2rem;
 }
 
 .h2Lesson {
@@ -527,17 +539,17 @@ html {
 }
 
 .categoriesContainer {
+  position: relative;
   margin-top: 6vh;
   width: 100%;
   height: 12vh;
-  background-color: rgb(255, 255, 255);
 }
 
 .buttonContainer {
   margin-left: 1rem;
   width: 28%;
   display: grid;
-  grid-template-columns: auto auto auto;
+  grid-template-columns: auto auto auto auto;
   gap: 1rem;
 }
 
@@ -559,26 +571,96 @@ html {
   background-color: rgb(95, 171, 237)
 }
 
-.lessonSelector {
+.search{
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-  font-size: 1.1rem;
-  font-weight: bold;
-  height: 4rem;
-  width: 15rem;
+  font-size: 0.9rem;
+  position: absolute;
+  top: 2rem;
+  right: 2rem;
+  width: 50%;
+  height: 1rem;
+  border-radius: 0.7rem;
+  border-style: solid;
+  border-width: 0.1rem;
+  border-color: rgb(188, 188, 188);
+  box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.081);
+  padding: 0.8rem;
+}
+
+.lessonSelectorBox, .lessonSelectorButton, .lessonButtonTest, .wordHolderContainer{
+  position: relative;
+  display: flexbox;
+  padding: 1rem;
+  height: 20rem;
+  width: 18rem;
   border-radius: 0.3rem;
   border-width: 0.1rem;
-  border-color: rgb(120, 120, 120);
+  border-color: rgb(179, 179, 179);
   border-style: solid;
   background-color: rgb(255, 255, 255);
   box-shadow: 0 0.2rem 0.3rem rgba(0, 0, 0, 0.102);
   cursor: pointer;
   transition: 0.4s;
+  justify-items: center;
 }
 
-.lessonSelector:hover {
+.lessonSelectorButton{
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-size: 1.2rem;
+  font-weight: bold;
+  height: 4rem;
+  width: 12rem;
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translate(-50%);
+}
+
+.lessonSelector:hover, .lessonSelectorTest:hover, .lessonButtonTest:hover{
   scale: 110%;
   transform: translateY(-0.2rem);
-  background-color: rgb(235, 235, 235);
+  background-color: rgb(246, 246, 246);
+}
+
+.h1LessonButton{
+  margin: 1rem 0 0 0;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-size: 1.4rem;
+  font-weight: bold;
+}
+
+.pLessonButton, .text{
+  margin: 0.5rem 0 0 0;
+  font-size: 0.9rem;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  color: rgb(143, 143, 143);
+}
+
+.text{
+  margin: 2rem 0 0 0;
+  color: black;
+}
+
+.time{
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  background-color: rgba(223, 223, 223, 0.613);
+  width: fit-content;
+  height: fit-content;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+}
+
+.lvl{
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  background-color: rgb(168, 228, 255);
+  width: fit-content;
+  height: fit-content;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  justify-self: start;
 }
 
 .practisContainer {
@@ -776,7 +858,7 @@ html {
 .vocabContainer {
   padding: 1rem 0 0 2rem;
   overflow-y: scroll;
-  height: 100%;
+  height: fit-content;
   width: 100%;
   border-radius: 0.7rem;
 }
@@ -785,36 +867,46 @@ html {
   margin-top: 2rem;
   align-items: center;
   justify-content: center;
-  gap: 3.5rem;
   width: 100%;
   height: 100%;
   display: grid;
-  grid-template-columns: auto auto auto auto;
+  grid-template-columns: repeat(auto-fill, minmax(240px,18vw));
+  gap: 2rem;
 }
 
 .wordHolderContainer {
-  text-align: center;
-  align-content: center;
-  width: 10rem;
-  height: 6rem;
-  background-color: rgb(235, 235, 235);
-  border-radius: 0.5rem;
-  box-shadow: 0 0 0.8rem rgba(0, 0, 0, 0.078);
+  width: 13rem;
+  height: 14rem;
   transition: 0.3s;
 }
 
 .wordHolderContainer:hover {
-  scale: 120%;
-  background-color: rgb(221, 221, 221);
+  scale: 110%;
+  background-color: rgb(248, 248, 248);
 }
 
-.word {
+.wordTop, .wordMiddle, .wordBottom {
+  text-align: center;
   font-size: large;
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
+.wordTop {
+  margin: 1rem 0 1rem 0;
+  font-size: clamp(0.8rem, 1.8vw, 1.8rem);
+  font-weight: bold;
+}
+
+.wordMiddle {
+  margin-bottom: 1rem;
+}
+
+.wordBottom {
+  margin-top: 3.5rem;
+}
+
 .lessonsArray {
-  height: 100%;
+  height: fit-content;
   margin-top: 3rem;
 }
 
@@ -822,3 +914,4 @@ html {
   color: rgb(0, 0, 0);
   margin: 3rem 0 0 3rem;
 }
+

@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, ChangeEvent } from 'react'
 import './App.css'
 
 function App() {
@@ -11,7 +11,8 @@ function App() {
     isHiddeMenu: boolean;
   }
 
-  const [loading, setLoading] = useState(true)
+  /*  const [loading, setLoading] = useState(true) */
+  const [searchValue, setSearchValue] = useState('')
   const [actionStatus, setActionStatus] = useState<actionArray>({
     animationStatus: true,
     logIn: false,
@@ -47,21 +48,9 @@ function App() {
 
   const vocab = [
     {
-      japanese: "あいます",
-      meaningEng: "to meet",
-      currentGroup: 1,
-      numberOfWords: 0,
-      checkedNumbers: [""],
-      hidde: false,
-      difficalId: [],
-      difIndex: 0,
-      checkHard: false,
-      indexCounter: 1,
-      currentWordId: 1
-    },
-    {
       japanese: "いきます",
       meaningEng: "to go",
+      exampleSentence: "がっこうへいきます。",
       currentGroup: 1,
       numberOfWords: 0,
       checkedNumbers: [""],
@@ -75,6 +64,7 @@ function App() {
     {
       japanese: "かえります",
       meaningEng: "to return",
+      exampleSentence: "いえにかえります。",
       currentGroup: 1,
       numberOfWords: 0,
       checkedNumbers: [""],
@@ -88,6 +78,7 @@ function App() {
     {
       japanese: "たべます",
       meaningEng: "to eat",
+      exampleSentence: "りんごをたべます。",
       currentGroup: 2,
       numberOfWords: 0,
       checkedNumbers: [""],
@@ -101,6 +92,7 @@ function App() {
     {
       japanese: "のみます",
       meaningEng: "to drink",
+      exampleSentence: "みずをのみます。",
       currentGroup: 1,
       numberOfWords: 0,
       checkedNumbers: [""],
@@ -114,6 +106,7 @@ function App() {
     {
       japanese: "みます",
       meaningEng: "to see, watch",
+      exampleSentence: "えいがをみます。",
       currentGroup: 2,
       numberOfWords: 0,
       checkedNumbers: [""],
@@ -127,6 +120,7 @@ function App() {
     {
       japanese: "ききます",
       meaningEng: "to listen",
+      exampleSentence: "おんがくをききます。",
       currentGroup: 1,
       numberOfWords: 0,
       checkedNumbers: [""],
@@ -140,6 +134,7 @@ function App() {
     {
       japanese: "はなします",
       meaningEng: "to speak",
+      exampleSentence: "にほんごをはなします。",
       currentGroup: 1,
       numberOfWords: 0,
       checkedNumbers: [""],
@@ -153,6 +148,7 @@ function App() {
     {
       japanese: "します",
       meaningEng: "to do",
+      exampleSentence: "しゅくだいをします。",
       currentGroup: 3,
       numberOfWords: 0,
       checkedNumbers: [""],
@@ -166,6 +162,7 @@ function App() {
     {
       japanese: "べんきょうします",
       meaningEng: "to study",
+      exampleSentence: "にほんごをべんきょうします。",
       currentGroup: 3,
       numberOfWords: 0,
       checkedNumbers: [""],
@@ -922,90 +919,140 @@ function App() {
   ];
 
   const lessons = [
-    'Lesson 1',
-    'Lesson 2',
-    'Lesson 3',
-    'Lesson 4',
-    'Lesson 5',
-    'Lesson 6',
-    'Lesson 7',
-    'Lesson 8',
-    'Lesson 9',
-    'Lesson 10',
-    'Lesson 11',
-    'Lesson 12',
-    'Lesson 13',
-    'Lesson 14',
-    'Lesson 15',
+    {
+      name: 'Lesson 1 - Greetings & Introductions',
+      description: 'Learn essential Japanese greetings and self-introductions',
+      example: 'こんにちは、おはよう、こんばんは',
+      time: 30,
+      lvl: 'Basic',
+      number: 1
+    },
+    {
+      name: 'Lesson 2 - Numbers & Time',
+      description: 'Master counting, basic numbers, and telling time in Japanese',
+      example: 'いち、に、さん、なんじですか？',
+      time: 40,
+      lvl: 'Basic',
+      number: 2
+    },
+    {
+      name: 'Lesson 3 - Shopping & Asking Prices',
+      description: 'Learn vocabulary and phrases for shopping and handling money',
+      example: 'いくらですか？これをください',
+      time: 35,
+      lvl: 'Basic',
+      number: 3
+    },
+    {
+      name: 'Lesson 4 - Directions & Transportation',
+      description: 'Learn how to ask for directions and use public transport',
+      example: 'どこですか？電車はどこにありますか？',
+      time: 40,
+      lvl: 'Basic',
+      number: 4
+    },
+    {
+      name: 'Lesson 5 - Daily Activities',
+      description: 'Describe your daily routine and common activities',
+      example: 'おきます、ねます、はたらきます',
+      time: 30,
+      lvl: 'Basic',
+      number: 5
+    },
+    {
+      name: 'Lesson 6 - Food & Dining',
+      description: 'Learn vocabulary for food, drinks, and dining out',
+      example: 'たべます、のみます、レストラン',
+      time: 45,
+      lvl: 'Basic',
+      number: 6
+    },
+    {
+      name: 'Lesson 7 - Family & Relationships',
+      description: 'Talk about family members and relationships',
+      example: 'ちち、はは、あね、あに',
+      time: 35,
+      lvl: 'Basic',
+      number: 7
+    },
+    {
+      name: 'Lesson 8 - Work & Professions',
+      description: 'Learn vocabulary for workplaces and professions',
+      example: 'かいしゃいん、せんせい、エンジニア',
+      time: 40,
+      lvl: 'Basic',
+      number: 8
+    },
+    {
+      name: 'Lesson 9 - Hobbies & Interests',
+      description: 'Discuss hobbies, interests, and leisure activities',
+      example: 'スポーツ、えいが、ほんをよみます',
+      time: 30,
+      lvl: 'Basic',
+      number: 9
+    },
+    {
+      name: 'Lesson 10 - Weather & Seasons',
+      description: 'Learn how to talk about the weather and seasons',
+      example: 'あつい、さむい、あめ、ゆき',
+      time: 35,
+      lvl: 'Basic',
+      number: 10
+    },
+    {
+      name: 'Lesson 11 - Health & Body',
+      description: 'Learn vocabulary related to health and body parts',
+      example: 'あたま、て、あし、びょういん',
+      time: 40,
+      lvl: 'Basic',
+      number: 11
+    },
+    {
+      name: 'Lesson 12 - Colors & Adjectives',
+      description: 'Describe objects using colors and basic adjectives',
+      example: 'あかい、しろい、大きい、小さい',
+      time: 30,
+      lvl: 'Basic',
+      number: 12
+    },
+    {
+      name: 'Lesson 13 - Asking Questions',
+      description: 'Form and use questions in various contexts',
+      example: 'なに、どこ、いつ、どうして',
+      time: 35,
+      lvl: 'Basic',
+      number: 13
+    },
+    {
+      name: 'Lesson 14 - Verbs & Conjugation Basics',
+      description: 'Understand verb groups and learn basic conjugations',
+      example: 'たべます、のみます、いきます',
+      time: 50,
+      lvl: 'Intermediate',
+      number: 14
+    }
   ]
 
   const lessonsArray = [
     {
-      lesson: 'Translation',
-      content: '',
-      headline: 'Practice sentence',
-      pline: 'Create a sentence',
-      id: 1
+      type: 'Translation',
+      name: 'Translation - Build a Sentence',
+      description: 'Practice translating Japanese sentences by constructing them using individual word tiles.',
+      instructions: 'Click on the words in the correct order to form the Japanese sentence.',
+      time: 10,
+      lvl: 'Basic',
     },
     {
-      lesson: '-て form verb',
-      content: '',
-      headline: 'Choose right card',
-      pline: '-て form verb',
-      id: 2
-    },
-    {
-      lesson: 'empty',
-      content: '',
-      headline: 'Choose right card',
-      pline: '-て form verb',
-      id: 2
-    },
-    {
-      lesson: 'empty',
-      content: '',
-      headline: 'Choose right card',
-      pline: '-て form verb',
-      id: 2
-    },
-    {
-      lesson: 'empty',
-      content: '',
-      headline: 'Choose right card',
-      pline: '-て form verb',
-      id: 2
-    },
-    {
-      lesson: 'empty',
-      content: '',
-      headline: 'Choose right card',
-      pline: '-て form verb',
-      id: 2
-    },
-    {
-      lesson: 'empty',
-      content: '',
-      headline: 'Choose right card',
-      pline: '-て form verb',
-      id: 2
-    },
-    {
-      lesson: 'empty',
-      content: '',
-      headline: 'Choose right card',
-      pline: '-て form verb',
-      id: 2
-    },
-    {
-      lesson: 'empty',
-      content: '',
-      headline: 'Choose right card',
-      pline: '-て form verb',
-      id: 2
-    },
+      type: '-て form verb',
+      name: 'Memorize -て Form Groups',
+      description: 'Memorize which て-form group each verb belongs to for proper conjugation.',
+      instructions: 'View the verb, recall its て-form group, check your answer, and move to the next card.',
+      time: 30,
+      lvl: 'Intermediate',
+    }
   ]
 
-  const loadingAnim = () => {
+  /* const loadingAnim = () => {
     if (loading) {
       return (
         <div onClick={() => setLoading(false)} className='loadingBox'>
@@ -1015,14 +1062,13 @@ function App() {
         </div>
       )
     }
-  }
+  } */
 
   const pages = () => {
     switch (actionStatus.pageSet) {
       case 'Home':
         return (
           <div className={`middleContent ${actionStatus.animationStatus ? 'testPageEnter' : 'testPageExit'}`}>
-
             <div className='middleActions'>
               <div className='headText'>
                 <h1 className='h1Welcom'>Welcom!</h1>
@@ -1082,12 +1128,13 @@ function App() {
       case 'Lessons':
 
         return (
-          <div className={`${actionStatus.animationStatus ? 'testPageEnter' : 'testPageExit'}`}>
+          <div className={`middleActions ${actionStatus.animationStatus ? 'testPageEnter' : 'testPageExit'}`}>
             <div className='vocabContainer'>
               <div className={`lessonHideContainer ${practiceContent.lessonStart ? 'remove' : null}`}>
                 <h1 className='h1Lesson'> Lessons</h1>
                 <p className='pLesson'>Choose lesson</p>
-                <p className='pLessonText'>
+                <input className='search' value={searchValue} onChange={handleInput} placeholder='Search'></input>
+                {/* <p className='pLessonText'>
                   Each lesson is designed to gradually introduce new vocabulary,
                   grammar rules, <br />and sentence patterns, making it perfect for beginners.<br />
                   <br />
@@ -1104,16 +1151,23 @@ function App() {
                   You can easily navigate through the lessons and learn at your own pace. <br />
                   Just click on the button below to choose the lesson you want to study. <br />
                   Each button corresponds to a lesson, starting from the basics and progressing to more advanced topics.
-                </p>
-                <div className='lessonsArray'>
-                  <div className='lessonsContainer'>
-                    {lessons.map((item, index) => {
-                      return (
-                        <button key={index} onClick={() => lessonPage(item)} className='lessonSelector'>{item}</button>
-                      )
-                    })}
-                  </div>
-                </div>
+                </p> */}
+              </div>
+            </div>
+            <div className='lessonsArray'>
+              <div className='lessonsContainer'>
+                {lessons.map((item, index) => {
+                  return (
+                    <div key={index} onClick={() => lessonPage(item.number)} className='lessonSelectorBox'>
+                      <div className='lvl'>{item.lvl}</div>
+                      <h1 className='h1LessonButton'>{item.name}</h1>
+                      <p className='pLessonButton'>{item.description}</p>
+                      <div className='time'>{item.time} min</div>
+                      <p className='text'><b>Examples: </b><br />{item.example}</p>
+                      <button className='lessonSelectorButton'>Start lesson</button>
+                    </div>
+                  )
+                })}
               </div>
             </div>
           </div>
@@ -1131,7 +1185,7 @@ function App() {
       case 'Kanji':
         //add Kanji cards
         return (
-          <div className={`pagesDiv ${actionStatus.animationStatus ? 'testPageEnter' : 'testPageExit'}`}> Page "Kanji" </div>
+          <div className={`cardConteiner ${actionStatus.animationStatus ? 'testPageEnter' : 'testPageExit'}`}> Page "Kanji" </div>
         )
         break;
       case 'Test':
@@ -1141,19 +1195,28 @@ function App() {
               <h1 className='h1Lesson'>Practice Japanese</h1>
               <p className='pLesson'>Select the lesson or exercise</p>
               <div className='categoriesContainer'>
+                <input className='search' value={searchValue} onChange={handleInput} placeholder='Search'></input>
                 <h2 className='h2Lesson'>Categories:</h2>
                 <div className='buttonContainer'>
                   <button className='categoriesButton'>All</button>
-                  <button className='categoriesButton'>Lessons 1 - 25</button>
-                  <button className='categoriesButton'>Practis</button>
+                  <button className='categoriesButton'>Translation</button>
+                  <button className='categoriesButton'>Cards</button>
+                  <button className='categoriesButton'>Words</button>
                 </div>
               </div>
               <div className='lessonsContainer'>
                 {lessonsArray.map((item, index) => {
                   return (
-                    <button key={item.id} onClick={
-                      () => lessonSelector(item.lesson, index)
-                    } className='lessonSelector'>{item.lesson}</button>
+                    <div key={index} onClick={
+                      () => lessonSelector(item.type, index)
+                    } className='lessonButtonTest'>
+                      <div className='lvl'>{item.lvl}</div>
+                      <h1 className='h1LessonButton'>{item.type}</h1>
+                      <p className='pLessonButton'>{item.description}</p>
+                      <div className='time'>{item.time} min</div>
+                      <p className='text'><b>Instruction: </b><br />{item.instructions}</p>
+                      <button className='lessonSelectorButton'>Start lesson</button>
+                    </div>
                   )
                 })}
               </div>
@@ -1236,25 +1299,29 @@ function App() {
       case 'Vocabulary':
         //add search
         return (
-          <div className={`${actionStatus.animationStatus ? 'testPageEnter' : 'testPageExit'}`}>
+          <div className={`middleActions ${actionStatus.animationStatus ? 'testPageEnter' : 'testPageExit'}`}>
             <div className='vocabContainer'>
               <h1 className='h1Lesson'> Vocabulary</h1>
               <p className='pLesson'>Choose from lesson</p>
-              <div className='vocGrid'>
-                {vocab.map((item, index) => {
-                  return (
-                    <div key={index} className='wordHolderContainer'>
-                      <div className='word'>
-                        {item.japanese}
-                      </div>
-                      <div className='word'>
-                        {item.meaningEng}
-                      </div>
+              <input className='search' value={searchValue} onChange={handleInput} placeholder='Search'></input>
+            </div>
+            <div className='vocGrid'>
+              {vocab.map((item, index) => {
+                return (
+                  <div key={index} className='wordHolderContainer'>
+                    <div className='wordTop'>
+                      {item.japanese}
                     </div>
-                  )
-                })
-                }
-              </div>
+                    <div className='wordMiddle'>
+                      {item.meaningEng}
+                    </div>
+                    <div className='wordBottom'>Example: <br/>
+                      {item.exampleSentence}
+                    </div>
+                  </div>
+                )
+              })
+              }
             </div>
           </div>
         )
@@ -1262,7 +1329,7 @@ function App() {
     }
   }
 
-  const lessonPage = (lesson: string) => {
+  const lessonPage = (lesson: number) => {
     console.log(lesson)
     setPracticeContent((p) => ({ ...p, lessonStart: !p.lessonStart }))
   }
@@ -1274,8 +1341,8 @@ function App() {
           ...p, startPractice: !p.startPractice,
           words: practiceQuestions[0].words,
           lessonType: 'Translation',
-          headLine: lessonsArray[index].headline,
-          pline: lessonsArray[index].pline,
+          headLine: lessonsArray[index].name,
+          pline: lessonsArray[index].instructions,
           id: 0
         }))
         break;
@@ -1416,9 +1483,13 @@ function App() {
     }, 300)
   }
 
+  const handleInput = (event: ChangeEvent<HTMLInputElement>): void => {
+    setSearchValue(event.target.value)
+  }
+
   return (
     <div className='body'>
-      {loadingAnim()}
+      {/* {loadingAnim()} */}
       <div className='gridContainer'>
         <div className='gridItemLeft'>
           <div className='logoImage'>日本語学習</div>
