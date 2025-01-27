@@ -1201,8 +1201,8 @@ function App() {
             <div className={`headLine ${practiceContent.startPractice ? 'remove' : null}`}>
               <h1 className='h1Lesson'>Practice Japanese</h1>
               <p className='pLesson'>Select the lesson or exercise</p>
+              <input className='search' value={searchValue} onChange={handleInput} placeholder='Search'></input>
               <div className='categoriesContainer'>
-                <input className='search' value={searchValue} onChange={handleInput} placeholder='Search'></input>
                 <h2 className='h2Lesson'>Categories:</h2>
                 <div className='buttonContainer'>
                   <button className='categoriesButton'>All</button>
@@ -1485,6 +1485,8 @@ function App() {
   const newPageStatus = (status: string) => {
     setActionStatus((a) => ({ ...a, animationStatus: false }))
     setTimeout(() => {
+      actionStatus.leftMenu ?
+        setActionStatus((a) => ({ ...a, leftMenu: !a.leftMenu })) : null
       setActionStatus((a) => ({ ...a, pageSet: status }))
       setActionStatus((a) => ({ ...a, animationStatus: true }))
     }, 300)
