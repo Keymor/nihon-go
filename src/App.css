@@ -8,9 +8,11 @@ html {
 }
 
 .topMenuContainer {
+  position: relative;
+  padding: 1rem;
   display: grid;
   grid-template-columns: 12rem 4rem 4rem 7rem;
-  height: 5rem;
+  height: 3rem;
   width: 84.9vw;
   background-color: rgb(255, 255, 255);
   justify-content: end;
@@ -39,6 +41,21 @@ html {
 
 .wordsCounterContainer {
   position: relative;
+}
+
+.leftMenuBatton {
+  text-align: center;
+  align-content: center;
+  width: 3rem;
+  height: 3rem;
+  position: absolute;
+  align-self: center;
+  left: 2rem;
+  color: white;
+  font-size: 2rem;
+  background-color: rgb(177, 219, 255);
+  border-radius: 0.5rem;
+  box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.169);
 }
 
 .kanjiCounterContainer {}
@@ -216,7 +233,7 @@ html {
 
 .gridHome {
   display: grid;
-  grid-template-columns: 25% 25% 25%;
+  grid-template-columns: repeat(auto-fill, minmax(200px,18vw));
   gap: 3vw;
   justify-content: center;
   width: 100%;
@@ -892,13 +909,15 @@ html {
 }
 
 .wordTop {
-  margin: 1rem 0 1rem 0;
+  margin: 1rem 0 0.5rem 0;
   font-size: clamp(0.8rem, 1.8vw, 1.8rem);
   font-weight: bold;
 }
 
 .wordMiddle {
   margin-bottom: 1rem;
+  color: rgb(115, 115, 115);
+  font-size: 1rem;
 }
 
 .wordBottom {
@@ -913,5 +932,51 @@ html {
 .pLessonText {
   color: rgb(0, 0, 0);
   margin: 3rem 0 0 3rem;
+}
+
+/* Mobile */
+
+.boxExitMobile{
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  z-index: 19;
+}
+
+@media (max-width: 768px) {
+  .lessonProgresContainer, .wordsCounterContainer, .kanjiCounterContainer {
+    visibility: hidden;
+  }
+
+  .gridItemLeft {
+    transform: translate(-150%);
+  }
+
+  .gridItemMiddle, .topMenuContainer {
+    transform: translate(-4.5%);
+  }
+
+  .gridItemMiddle, .topMenuContainer{
+    width: 100vw;
+  }
+}
+
+@media (min-width: 768px) {
+  .leftMenuBatton {
+    visibility: hidden;
+  }
+
+  .boxExitMobile{
+    visibility: hidden;
+  }
+}
+
+.leftMenuShow{
+  position: absolute;
+  left: 0;
+  z-index: 20;
+  width: 35vw;
+  transform: translate(0%);
+  box-shadow: 0 0 0.8rem rgba(0, 0, 0, 0.217);
 }
 

@@ -9,6 +9,7 @@ function App() {
     pageSet: string;
     isHidde: boolean;
     isHiddeMenu: boolean;
+    leftMenu: boolean;
   }
 
   /*  const [loading, setLoading] = useState(true) */
@@ -19,6 +20,7 @@ function App() {
     pageSet: 'Home',
     isHidde: false,
     isHiddeMenu: false,
+    leftMenu: false
   })
   const [currentWord, setCurrentWord] = useState<{
     japanese: string;
@@ -46,7 +48,7 @@ function App() {
     currentWordId: 0
   })
 
-  const vocab = [
+  const verbTGroup = [
     {
       japanese: "いきます",
       meaningEng: "to go",
@@ -1175,10 +1177,15 @@ function App() {
         break;
       case 'Cards':
         return (
-          <div className={`cardConteiner ${actionStatus.animationStatus ? 'testPageEnter' : 'testPageExit'}`}>
-            <div className='topCard'></div>
-            <div className='bottomCard'></div>
-            Page "Cards"
+          <div className={`gridItemMiddle ${actionStatus.animationStatus ? 'testPageEnter' : 'testPageExit'}`}>
+            <h1>some text</h1>
+            <p>some text</p>
+            <div>all lesson selector</div>
+            <div className='cardConteiner'>
+              <div className='topCard'></div>
+              <div className='bottomCard'></div>
+              Page "Cards"
+            </div>
           </div>
         )
         break;
@@ -1306,7 +1313,7 @@ function App() {
               <input className='search' value={searchValue} onChange={handleInput} placeholder='Search'></input>
             </div>
             <div className='vocGrid'>
-              {vocab.map((item, index) => {
+              {verbTGroup.map((item, index) => {
                 return (
                   <div key={index} className='wordHolderContainer'>
                     <div className='wordTop'>
@@ -1315,7 +1322,7 @@ function App() {
                     <div className='wordMiddle'>
                       {item.meaningEng}
                     </div>
-                    <div className='wordBottom'>Example: <br/>
+                    <div className='wordBottom'>Example: <br />
                       {item.exampleSentence}
                     </div>
                   </div>
@@ -1491,7 +1498,7 @@ function App() {
     <div className='body'>
       {/* {loadingAnim()} */}
       <div className='gridContainer'>
-        <div className='gridItemLeft'>
+        <div className={`gridItemLeft ${actionStatus.leftMenu ? 'leftMenuShow' : null}`}>
           <div className='logoImage'>日本語学習</div>
           <button className='buttonMenu' onClick={() => newPageStatus('Home')}>
             <div className='home'></div>
@@ -1522,8 +1529,20 @@ function App() {
             <span className='settingsText'> Settings </span>
           </div>
         </div>
+        <div className={`boxExitMobile ${actionStatus.leftMenu ? '' : 'remove'}`} onClick={
+          () => setActionStatus((a) => ({
+            ...a,
+            leftMenu: !a.leftMenu
+          }))
+        }></div>
         <div className='Middle'>
           <div className='topMenuContainer'>
+            <div className='leftMenuBatton' onClick={
+              () => setActionStatus((a) => ({
+                ...a,
+                leftMenu: !a.leftMenu
+              }))
+            }>=</div>
             <div className='lessonProgresContainer'>
               <p className='topMenuText'><b>Lesson Progress</b></p>
               <div className='progressBar'></div>
