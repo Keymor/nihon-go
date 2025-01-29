@@ -1054,18 +1054,6 @@ function App() {
     }
   ]
 
-  /* const loadingAnim = () => {
-    if (loading) {
-      return (
-        <div onClick={() => setLoading(false)} className='loadingBox'>
-          <div className='loadingItem1'></div>
-          <div className='loadingItem2'></div>
-          <div className='loadingItem3'></div>
-        </div>
-      )
-    }
-  } */
-
   const pages = () => {
     switch (actionStatus.pageSet) {
       case 'Home':
@@ -1073,7 +1061,8 @@ function App() {
           <div className={`middleContent ${actionStatus.animationStatus ? 'testPageEnter' : 'testPageExit'}`}>
             <div className='middleActions'>
               <div className='headText'>
-                <h1 className='h1Welcom'>Welcom!</h1>
+                <h1 className='h1Welcom'>Welcome!</h1>
+                <div className='result'></div>
                 <p className='pWelcom'>Continue your journey to mastering Japanese.</p>
               </div>
               <div className='gridHome'>
@@ -1156,7 +1145,6 @@ function App() {
                 </p> */}
               </div>
             </div>
-            <div className='lessonsArray'>
               <div className='lessonsContainer'>
                 {lessons.map((item, index) => {
                   return (
@@ -1171,16 +1159,12 @@ function App() {
                   )
                 })}
               </div>
-            </div>
           </div>
         )
         break;
       case 'Cards':
         return (
           <div className={`gridItemMiddle ${actionStatus.animationStatus ? 'testPageEnter' : 'testPageExit'}`}>
-            <h1>some text</h1>
-            <p>some text</p>
-            <div>all lesson selector</div>
             <div className='cardConteiner'>
               <div className='topCard'></div>
               <div className='bottomCard'></div>
@@ -1269,8 +1253,9 @@ function App() {
                   <button className='exitButton' onClick={() => lessonSelector('Exit', 0)}>Go back</button>
                 </div>
               </div>
-              <button className='exitButton' onClick={() => lessonSelector('Exit', 0)}>Exit</button>
             </div>
+            <button className={`exitButton ${practiceContent.lessonType === 'Translation' ? null : 'remove'}`}
+              onClick={() => lessonSelector('Exit', 0)}>Exit</button>
             {/* CardLesson */}
             <div className={`practisContainer ${practiceContent.lessonType === '-て form verb' ? null : 'remove'}`}>
               <h1 className='h1Lesson'>{practiceContent.headLine}</h1>
@@ -1537,7 +1522,7 @@ function App() {
             leftMenu: !a.leftMenu
           }))
         }></div>
-        <div className='Middle'>
+        <div className='middle'>
           <div className='topMenuContainer'>
             <div className='leftMenuBatton' onClick={
               () => setActionStatus((a) => ({

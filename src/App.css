@@ -1,20 +1,22 @@
 body,
 html {
-  overflow-x: hidden;
+  position: relative;
   margin: 0;
   padding: 0;
-  width: 100vw;
-  height: 100vh;
-  background-color: rgb(226, 226, 226);
+  overflow-x: hidden;
+  width: 100%;
+  min-height: 100vh;
+  height: -webkit-fill-available;
+  background-color: rgb(249, 249, 249);
 }
 
 .topMenuContainer {
   position: relative;
-  padding: 1rem;
+  padding: 1rem 0 1rem 0;
   display: grid;
   grid-template-columns: 12rem 4rem 4rem 7rem;
   height: 3rem;
-  width: 82.4vw;
+  width: 85vw;
   background-color: rgb(255, 255, 255);
   justify-content: end;
 }
@@ -120,6 +122,7 @@ html {
 .logoImage {
   width: 100%;
   height: 5rem;
+  min-height: fit-content;
   background-color: rgb(205, 232, 255);
   text-align: center;
   align-content: center;
@@ -175,12 +178,57 @@ html {
   background-size: contain;
 }
 
+.middle {
+  position: relative;
+  width: 85vw;
+}
+
+.gridContainer {
+  position: relative;
+  display: grid;
+  justify-content: center;
+  grid-template-columns: auto auto auto;
+  width: 100%;
+}
+
+.gridItemLeft,
+.gridItemMiddle {
+  flex-direction: column;
+  align-items: center;
+  background-color: rgb(255, 255, 255);
+}
+
+.gridItemLeft {
+  position: relative;
+  width: 15vw;
+  transition: 0.3s;
+  height: 100vh;
+}
+
+.gridItemMiddle {
+  height: calc(100% - 5rem);
+  width: 100%;
+  background-color: rgb(249, 249, 249);
+  box-shadow: 0 0.5rem 0.3rem rgba(0, 0, 0, 0.023) inset;
+}
+
+.gridHome {
+  justify-self: center;
+  justify-content: center;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 18vw));
+  gap: 3vw;
+  max-width: 100%;
+}
+
 .settContainer {
   display: flex;
   padding: 0 0.5rem 0 0.5rem;
   gap: 0.3rem;
   position: absolute;
   bottom: 0;
+  left: 50%;
+  transform: translate(-50%);
   margin-bottom: 1rem;
   width: fit-content;
   height: 6%;
@@ -205,47 +253,6 @@ html {
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
-.gridContainer {
-  position: relative;
-  display: grid;
-  justify-content: center;
-  grid-template-columns: auto auto auto;
-  width: 100%;
-}
-
-.gridItemLeft,
-.gridItemMiddle {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background-color: rgb(255, 255, 255);
-}
-
-.gridItemLeft {
-  width: 15vw;
-  transition: 0.3s;
-  height: 100vh;
-}
-
-.gridItemMiddle {
-  padding: 1rem;
-  width: 82.5vw;
-  height: 100%;
-  background-color: rgb(249, 249, 249);
-  overflow-x: scroll;
-  height: 86vh;
-  box-shadow: 0.1rem 0.1rem 0.5rem rgba(0, 0, 0, 0.094) inset;
-}
-
-.gridHome {
-  justify-self: center;
-  justify-content: center;
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 18vw));
-  gap: 3vw;
-  max-width: 100%;
-}
-
 .practiceContainer {
   margin-top: 1.5rem;
   position: relative;
@@ -253,6 +260,7 @@ html {
   grid-template-rows: auto;
   gap: 2rem;
   width: 100%;
+  min-height: fit-content;
   align-items: center;
 }
 
@@ -361,7 +369,9 @@ html {
 }
 
 .headText {
-  width: 93%;
+  width: 100%;
+  padding: 1rem 0 0 1rem;
+  box-sizing: border-box;
   justify-self: center;
   height: fit-content;
   margin-bottom: 1.5rem;
@@ -372,12 +382,8 @@ html {
   margin: 0;
 }
 
-.h1Welcom {
-  margin-top: 1rem;
-}
-
 .learningContainer {
-  margin-top: 2rem;
+  margin: 2rem auto auto auto;
   justify-self: center;
   padding: 2rem;
   background-color: rgb(255, 255, 255);
@@ -386,13 +392,14 @@ html {
   border-width: 0.1rem;
   border-color: rgb(221, 221, 221);
   box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.073);
-  width: 90%;
+  width: 85%;
   height: fit-content;
 }
 
 .middleActions {
   position: relative;
   width: 100%;
+  height: 100%;
 }
 
 .loadingBox {
@@ -481,6 +488,7 @@ html {
 }
 
 .middleContent {
+  height: 100%;
   width: 100%;
   transition: 0.3s;
   opacity: 0%;
@@ -502,12 +510,11 @@ html {
   align-content: center;
   border-radius: 1.7rem;
 }
-
+ 
 .testPageContainer {
+  padding: 1rem;
+  box-sizing: border-box;
   position: relative;
-  padding: 1rem 2rem 0 2rem;
-  height: 100%;
-  width: 93%;
 }
 
 .remove {
@@ -537,19 +544,27 @@ html {
 .lessonsContainer {
   width: 100%;
   margin-top: 2rem;
-  height: fit-content;
+  height: 100%;
   padding-top: 0.5rem;
   justify-content: center;
   align-items: center;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(18rem, 20rem));
   gap: 2rem;
+  overflow-y: scroll;
+  -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1), rgba(0, 0, 0, 0.897) 90%, rgba(0,0,0,0));
+  mask-image: linear-gradient(to bottom, rgba(0,0,0,1), rgba(0, 0, 0, 0.912) 90%, rgba(0,0,0,0));
 }
 
-.lessonsArray {
-  grid-template-columns: auto auto auto;
-  gap: 2rem;
+.middleActions .lessonsContainer {
+  height: calc(100vh - 14rem);
 }
+
+.headLine .lessonsContainer {
+  align-items: start;
+  height: 50vh;
+}
+
 
 .h2Lesson {
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
@@ -611,7 +626,6 @@ html {
 .lessonButtonTest,
 .wordHolderContainer {
   position: relative;
-  display: flexbox;
   padding: 1rem;
   height: 20rem;
   width: 18rem;
@@ -633,7 +647,7 @@ html {
   height: 4rem;
   width: 12rem;
   position: absolute;
-  bottom: 2rem;
+  bottom: 1rem;
   left: 50%;
   transform: translate(-50%);
 }
@@ -689,25 +703,29 @@ html {
 }
 
 .practisContainer {
+  justify-self: center;
   width: 100%;
   height: 100%;
 }
 
 .exContainer {
+  margin: auto;
   width: 100%;
-  height: 70%;
+  height: 100%;
   box-sizing: border-box;
+  justify-content: center;
+  justify-items: center;
   text-align: center;
-  padding-top: 1rem;
 }
 
 .inputQ {
+  margin: auto;
   justify-self: center;
   align-content: center;
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
   font-size: 1.1rem;
   font-weight: bold;
-  border-radius: 0.3rem;
+  border-radius: 0.6rem;
   border-width: 0.1rem;
   border-color: rgb(120, 120, 120);
   color: black;
@@ -715,12 +733,11 @@ html {
   border-style: solid;
   background-color: rgb(255, 255, 255);
   box-shadow: 0 0.2rem 0.3rem rgba(0, 0, 0, 0.102);
-  height: 10%;
-  min-width: 40%;
-  width: fit-content;
-  border-radius: 0.6rem;
-  border-style: solid;
-}
+  height: 2rem;
+  min-height: fit-content;
+  min-width: fit-content;
+  width: 30%;
+} 
 
 .testSection {
   display: grid;
@@ -731,11 +748,11 @@ html {
   gap: 0.5rem;
   background-color: rgb(240, 240, 240);
   border-radius: 1rem;
-  height: 40%;
-  width: 40%;
+  height: 10rem;
+  width: 15rem;
   justify-self: center;
   align-content: center;
-  margin-top: 1rem;
+  margin: 1rem auto auto auto;
 }
 
 .doneButton,
@@ -791,11 +808,12 @@ html {
 
 .cardContainerOne {
   width: 100%;
-  height: 70%;
+  height: 50vh;
   justify-items: center;
 }
 
 .card {
+  position: relative;
   text-align: center;
   justify-content: center;
   align-items: center;
@@ -804,15 +822,12 @@ html {
   border-width: 0.1rem;
   border-color: black;
   border-style: solid;
-  min-height: 70%;
-  min-width: 20%;
-  width: 30%;
+  width: 35%;
   height: 100%;
-  margin: 1rem 0 0 0;
+  margin: 1rem auto auto auto;
 }
 
 .japanWord {
-  position: relative;
   align-content: center;
   font-size: 1.7rem;
   font-family: Arial, Helvetica, sans-serif;
@@ -820,7 +835,6 @@ html {
 }
 
 .meaning {
-  position: relative;
   align-content: center;
   font-size: 1.3rem;
   font-family: Arial, Helvetica, sans-serif;
@@ -828,7 +842,6 @@ html {
 }
 
 .buttonContainerCard {
-  position: relative;
   height: 33.3%;
   align-content: center;
 }
@@ -836,7 +849,7 @@ html {
 .japanWord::after,
 .buttonContainerCard::after {
   position: absolute;
-  bottom: 0;
+  bottom: 66.6%;
   left: 0;
   content: '';
   height: 0.1rem;
@@ -845,7 +858,7 @@ html {
 }
 
 .buttonContainerCard::after {
-  top: 0;
+  bottom: 33.3%;
   background-color: rgb(125, 125, 125);
 }
 
@@ -865,11 +878,11 @@ html {
 }
 
 .cardConteiner {
-  height: 60%;
+  height: 60vh;
   width: 60%;
+  margin: auto;
   background-color: rgb(235, 235, 235);
   border-radius: 1rem;
-  margin-top: 10%;
   text-align: center;
   align-content: center;
   transition: 0.3s;
@@ -881,7 +894,7 @@ html {
 }
 
 .vocabContainer {
-  padding: 1rem 0 0 2rem;
+  padding: 1rem 0 0 1rem;
   overflow-y: scroll;
   height: fit-content;
   width: 100%;
@@ -893,10 +906,11 @@ html {
   align-items: center;
   justify-content: center;
   width: 100%;
-  height: 100%;
+  height: calc(100vh - 11.6rem);
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(240px, 18vw));
   gap: 2rem;
+  overflow-y: scroll;
 }
 
 .wordHolderContainer {
@@ -948,7 +962,7 @@ html {
 /* Mobile */
 
 .boxExitMobile {
-  position: absolute;
+  position: fixed;
   width: 100vw;
   height: 100vh;
   z-index: 19;
@@ -963,7 +977,7 @@ html {
   }
 
   .gridItemLeft {
-    position: absolute;
+    position: fixed;
     left: 0;
     transform: translate(-100%);
     height: 100vh;
@@ -972,20 +986,25 @@ html {
   }
 
   .gridItemMiddle {
-    margin-top: 4rem;
-    width: calc(100vw - 1rem);
+    margin-top: 5rem;
+    width: 100vw;
   }
 
   .topMenuContainer {
     position: fixed;
     top: 0;
-    width: calc(100vw - 1rem);
+    width: 100vw;
     z-index: 10;
     box-shadow: 0 0 0.8rem rgba(0, 0, 0, 0.118);
   }
 
   .gridContainer {
     grid-template-columns: auto;
+    width: 100vw;
+  }
+
+  .middle {
+    width: 100vw;
   }
 
   .learningContainer {
@@ -995,6 +1014,46 @@ html {
   .search {
     position: unset;
     margin-top: 1rem;
+  }
+
+  .exContainer {
+    justify-self: center;
+    width: 80vw;
+  }
+
+  .inputQ {
+    width: 80%;
+    padding: 0 0.5rem 0 0.5rem;
+  }
+
+  .testSection {
+    width: 80%;
+    min-width: fit-content;
+  }
+
+  .doneButton {
+    margin-top: 0;
+  }
+
+  .exitButton {
+    margin-top: 2rem;
+  }
+
+  .middleActions .lessonsContainer {
+    height: 100%;
+    overflow-y: unset;
+    -webkit-mask-image: none;
+    mask-image: none;
+  }
+
+  .headLine .lessonsContainer {
+    overflow-y: unset;
+    -webkit-mask-image: none;
+    mask-image: none;
+  }
+
+  .card {
+    width: 80%;
   }
 }
 
@@ -1009,7 +1068,6 @@ html {
 }
 
 .leftMenuShow {
-  position: absolute;
   left: 0;
   z-index: 20;
   width: 45vw;
