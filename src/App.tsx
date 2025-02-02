@@ -1145,30 +1145,48 @@ function App() {
                 </p> */}
               </div>
             </div>
-              <div className='lessonsContainer'>
-                {lessons.map((item, index) => {
-                  return (
-                    <div key={index} onClick={() => lessonPage(item.number)} className='lessonSelectorBox'>
-                      <div className='lvl'>{item.lvl}</div>
-                      <h1 className='h1LessonButton'>{item.name}</h1>
-                      <p className='pLessonButton'>{item.description}</p>
-                      <div className='time'>{item.time} min</div>
-                      <p className='text'><b>Examples: </b><br />{item.example}</p>
-                      <button className='lessonSelectorButton'>Start lesson</button>
-                    </div>
-                  )
-                })}
-              </div>
+            <div className='lessonsContainer'>
+              {lessons.map((item, index) => {
+                return (
+                  <div key={index} onClick={() => lessonPage(item.number)} className='lessonSelectorBox'>
+                    <div className='lvl'>{item.lvl}</div>
+                    <h1 className='h1LessonButton'>{item.name}</h1>
+                    <p className='pLessonButton'>{item.description}</p>
+                    <div className='time'>{item.time} min</div>
+                    <p className='text'><b>Examples: </b><br />{item.example}</p>
+                    <button className='lessonSelectorButton'>Start lesson</button>
+                  </div>
+                )
+              })}
+            </div>
           </div>
         )
         break;
       case 'Cards':
         return (
           <div className={`gridItemMiddle ${actionStatus.animationStatus ? 'testPageEnter' : 'testPageExit'}`}>
+            <div className='headText'>
+              <h1 className='h1Lesson'>Vocabulary practice</h1>
+              <p className='pLesson'>Flesh cards</p>
+            </div>
+            <select className='cardsSelector'>
+              <option>Lesson 1</option>
+              <option>Lesson 2</option>
+              <option>Lesson 3</option>
+            </select>
             <div className='cardConteiner'>
-              <div className='topCard'></div>
-              <div className='bottomCard'></div>
-              Page "Cards"
+              <div className='cardBox'>
+                <p className='pLesson'>Words 1/10</p>
+                <div className='progressBarWords'></div>
+                <div className='scrollBar'></div>
+                <div className='topJapanese'>こんにちは</div>
+                <div className='bottomEng'>Hello</div>
+                <div className='exampleBar'><b>こんにちはせんせい</b><br />Hello, sensei.</div>
+                <div className='bottomButtons'>
+                  <button className='cardsButton1'>Hard</button>
+                  <button className='cardsButton2'>Next</button>
+                </div>
+              </div>
             </div>
           </div>
         )
