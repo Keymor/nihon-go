@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Figtree:wght@300;400;500;600;700&family=Noto+Sans:wght@300;400;500;600;700&display=swap');
+
 body,
 html {
   position: relative;
@@ -15,10 +17,26 @@ html {
   padding: 1rem 0 1rem 0;
   display: grid;
   grid-template-columns: 12rem 4rem 4rem 7rem;
-  height: 3rem;
-  width: 85vw;
+  height: 8vh;
+  width: 100%;
   background-color: rgb(255, 255, 255);
   justify-content: end;
+  box-sizing: border-box;
+}
+
+.topMetuButtonsContainer {
+  height: 7vh;
+  width: 100%;
+  background-color: rgb(255, 255, 255);
+  display: flex;
+}
+
+.topMetuButtonsContainer::before {
+  position: absolute;
+  content: '';
+  height: 0.1rem;
+  width: 100%;
+  background-color: rgb(218, 223, 227);
 }
 
 .lessonProgresContainer,
@@ -31,7 +49,7 @@ html {
 }
 
 .topMenuText {
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-family: 'Figtree', 'Figtree-fallback', 'Figtree-fallback-android', 'Noto Sans', 'NotoSans-fallback', 'NotoSans-fallback-android', sans-serif;
   font-size: 0.9rem;
   margin: 0;
   color: rgb(84, 84, 84);
@@ -64,18 +82,14 @@ html {
   box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.308);
 }
 
-.kanjiCounterContainer {}
-
-.uresLogoContainer {}
-
 .wordsCounterContainer::after {
   position: absolute;
   content: '';
-  width: 2%;
-  height: 60%;
+  width: 0.1rem;
+  height: 100%;
   background-color: rgba(0, 0, 0, 0.189);
-  transform: translateY(-85%);
   right: 0;
+  bottom: 0;
 }
 
 .progressBar {
@@ -97,40 +111,62 @@ html {
   border-radius: 0.3rem;
 }
 
+span {
+  margin: auto;
+  z-index: 1;
+  font-weight: 630;
+  color: rgb(125, 125, 125);
+  font-family: 'Figtree', 'Figtree-fallback', 'Figtree-fallback-android', 'Noto Sans', 'NotoSans-fallback', 'NotoSans-fallback-android', sans-serif;
+}
+
 .buttonMenu {
+  position: relative;
   display: flex;
   background: none;
   border-width: 0;
-  padding: 0.5rem 0 0.5rem 1rem;
+  padding: 0;
   align-items: center;
   justify-content: flex-start;
-  margin: 0.3rem;
   min-height: fit-content;
   min-width: fit-content;
-  width: 95%;
-  font-size: 1.2rem;
+  margin: 0 1rem 0 1rem;
+  font-size: 1rem;
   font-family: Arial, Helvetica, sans-serif;
   color: rgb(71, 63, 63);
   cursor: pointer;
+  z-index: 1;
 }
 
-.buttonMenu:hover {
+.buttonMenu::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  height: 0.4rem;
+  width: 0;
   background-color: rgb(205, 232, 255);
-  border-radius: 0.7rem;
+  transition: 0.3s;
+  z-index: 0;
+  box-sizing: border-box;
+  transform: translate(-1rem);
 }
 
-.logoImage {
-  width: 100%;
-  height: 5rem;
+.buttonMenu:hover::before {
+  width: calc(100% + 2rem);
+}
+
+.logoImage2 {
+  padding: 0 0.5rem 0 0.5rem;
+  position: absolute;
+  width: fit-content;
+  height: 100%;
   min-height: fit-content;
   background-color: rgb(205, 232, 255);
   text-align: center;
   align-content: center;
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-  font-size: clamp(2.2rem, 3vw, 3rem);
+  font-family: 'Figtree', 'Figtree-fallback', 'Figtree-fallback-android', 'Noto Sans', 'NotoSans-fallback', 'NotoSans-fallback-android', sans-serif;
+  font-size: 2.5rem;
   font-weight: bold;
   color: rgb(56, 135, 205);
-  ;
 }
 
 .logo,
@@ -146,6 +182,7 @@ html {
   margin-right: 0.5rem;
   text-align: center;
   align-content: center;
+  z-index: 1;
 }
 
 .home {
@@ -180,14 +217,12 @@ html {
 
 .middle {
   position: relative;
-  width: 85vw;
+  width: 100%;
 }
 
 .gridContainer {
   position: relative;
-  display: grid;
-  justify-content: center;
-  grid-template-columns: auto auto auto;
+  justify-items: center;
   width: 100%;
 }
 
@@ -215,10 +250,13 @@ html {
 .gridHome {
   justify-self: center;
   justify-content: center;
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 18vw));
-  gap: 3vw;
-  max-width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  width: 86%;
+}
+
+.gridItemMiddle .headText {
+  width: 60vw;
 }
 
 .settContainer {
@@ -250,7 +288,7 @@ html {
 }
 
 .settingsText {
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-family: 'Figtree', 'Figtree-fallback', 'Figtree-fallback-android', 'Noto Sans', 'NotoSans-fallback', 'NotoSans-fallback-android', sans-serif;
 }
 
 .practiceContainer {
@@ -265,9 +303,10 @@ html {
 }
 
 .scoreContainer {
+  margin: 0.2rem;
   position: relative;
   padding: 1rem;
-  width: 86%;
+  width: 22vw;
   height: 6rem;
   background-color: rgb(255, 255, 255);
   border-radius: 0.5rem;
@@ -340,7 +379,7 @@ html {
 .h2Welcom,
 .textHomeC,
 .textHomeNext {
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-family: 'Figtree', 'Figtree-fallback', 'Figtree-fallback-android', 'Noto Sans', 'NotoSans-fallback', 'NotoSans-fallback-android', sans-serif;
 }
 
 .textHomeC {
@@ -384,8 +423,8 @@ html {
 
 .learningContainer {
   margin: 2rem auto auto auto;
-  justify-self: center;
   padding: 2rem;
+  box-sizing: border-box;
   background-color: rgb(255, 255, 255);
   border-radius: 0.5rem;
   border-style: solid;
@@ -398,7 +437,8 @@ html {
 
 .middleActions {
   position: relative;
-  width: 100%;
+  margin: auto;
+  width: 60vw;
   height: 100%;
 }
 
@@ -512,6 +552,8 @@ html {
 }
 
 .testPageContainer {
+  width: 60vw;
+  margin: auto;
   padding: 1rem;
   box-sizing: border-box;
   position: relative;
@@ -530,13 +572,13 @@ html {
 }
 
 .h1Lesson {
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-family: 'Figtree', 'Figtree-fallback', 'Figtree-fallback-android', 'Noto Sans', 'NotoSans-fallback', 'NotoSans-fallback-android', sans-serif;
   margin: 0;
 }
 
 .pLesson,
 .pLessonText {
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-family: 'Figtree', 'Figtree-fallback', 'Figtree-fallback-android', 'Noto Sans', 'NotoSans-fallback', 'NotoSans-fallback-android', sans-serif;
   color: rgb(138, 138, 138);
   margin: 0;
 }
@@ -560,14 +602,13 @@ html {
   height: calc(100vh - 14rem);
 }
 
-.headLine .lessonsContainer {
+.headLine {
   align-items: start;
   height: 50vh;
 }
 
-
 .h2Lesson {
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-family: 'Figtree', 'Figtree-fallback', 'Figtree-fallback-android', 'Noto Sans', 'NotoSans-fallback', 'NotoSans-fallback-android', sans-serif;
   font-size: 1.2rem;
   color: rgb(72, 72, 72);
 }
@@ -581,14 +622,13 @@ html {
 
 .buttonContainer {
   margin-left: 1rem;
-  width: 28%;
-  display: grid;
-  grid-template-columns: auto auto auto auto;
-  gap: 1rem;
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .categoriesButton {
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  margin: 0.5rem 1rem 0 0;
+  font-family: 'Figtree', 'Figtree-fallback', 'Figtree-fallback-android', 'Noto Sans', 'NotoSans-fallback', 'NotoSans-fallback-android', sans-serif;
   font-size: 0.9rem;
   height: 2.2rem;
   min-height: fit-content;
@@ -606,12 +646,12 @@ html {
 }
 
 .search {
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-family: 'Figtree', 'Figtree-fallback', 'Figtree-fallback-android', 'Noto Sans', 'NotoSans-fallback', 'NotoSans-fallback-android', sans-serif;
   font-size: 0.9rem;
   position: absolute;
   top: 2rem;
   right: 2rem;
-  width: 50%;
+  width: 30%;
   height: 1rem;
   border-radius: 0.7rem;
   border-style: solid;
@@ -641,7 +681,7 @@ html {
 }
 
 .lessonSelectorButton {
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-family: 'Figtree', 'Figtree-fallback', 'Figtree-fallback-android', 'Noto Sans', 'NotoSans-fallback', 'NotoSans-fallback-android', sans-serif;
   font-size: 1.2rem;
   font-weight: bold;
   height: 4rem;
@@ -662,7 +702,7 @@ html {
 
 .h1LessonButton {
   margin: 1rem 0 0 0;
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-family: 'Figtree', 'Figtree-fallback', 'Figtree-fallback-android', 'Noto Sans', 'NotoSans-fallback', 'NotoSans-fallback-android', sans-serif;
   font-size: 1.4rem;
   font-weight: bold;
 }
@@ -671,7 +711,7 @@ html {
 .text {
   margin: 0.5rem 0 0 0;
   font-size: 0.9rem;
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-family: 'Figtree', 'Figtree-fallback', 'Figtree-fallback-android', 'Noto Sans', 'NotoSans-fallback', 'NotoSans-fallback-android', sans-serif;
   color: rgb(143, 143, 143);
 }
 
@@ -684,7 +724,7 @@ html {
   position: absolute;
   top: 1rem;
   right: 1rem;
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-family: 'Figtree', 'Figtree-fallback', 'Figtree-fallback-android', 'Noto Sans', 'NotoSans-fallback', 'NotoSans-fallback-android', sans-serif;
   background-color: rgba(223, 223, 223, 0.613);
   width: fit-content;
   height: fit-content;
@@ -693,7 +733,7 @@ html {
 }
 
 .lvl {
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-family: 'Figtree', 'Figtree-fallback', 'Figtree-fallback-android', 'Noto Sans', 'NotoSans-fallback', 'NotoSans-fallback-android', sans-serif;
   background-color: rgb(168, 228, 255);
   width: fit-content;
   height: fit-content;
@@ -722,7 +762,7 @@ html {
   margin: auto;
   justify-self: center;
   align-content: center;
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-family: 'Figtree', 'Figtree-fallback', 'Figtree-fallback-android', 'Noto Sans', 'NotoSans-fallback', 'NotoSans-fallback-android', sans-serif;
   font-size: 1.1rem;
   font-weight: bold;
   border-radius: 0.6rem;
@@ -767,7 +807,7 @@ html {
   border-width: 0.1rem;
   border-color: rgb(120, 120, 120);
   background-color: rgb(228, 228, 228);
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-family: 'Figtree', 'Figtree-fallback', 'Figtree-fallback-android', 'Noto Sans', 'NotoSans-fallback', 'NotoSans-fallback-android', sans-serif;
   font-size: 0.8rem;
   font-weight: bold;
   cursor: pointer;
@@ -784,7 +824,7 @@ html {
   border-radius: 1rem;
   border-width: 0;
   background-color: rgb(148, 205, 255);
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-family: 'Figtree', 'Figtree-fallback', 'Figtree-fallback-android', 'Noto Sans', 'NotoSans-fallback', 'NotoSans-fallback-android', sans-serif;
   font-size: 0.8rem;
   font-weight: bold;
   cursor: pointer;
@@ -887,7 +927,7 @@ html {
   width: 30%;
   height: 2rem;
   min-height: fit-content;
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-family: 'Figtree', 'Figtree-fallback', 'Figtree-fallback-android', 'Noto Sans', 'NotoSans-fallback', 'NotoSans-fallback-android', sans-serif;
   font-weight: bold;
   padding: 0.5rem;
   border-radius: 0.5rem;
@@ -900,7 +940,7 @@ html {
 
 .cardConteiner {
   height: 70vh;
-  width: 60%;
+  width: 60vw;
   margin: auto;
   align-content: center;
   transition: 0.3s;
@@ -912,7 +952,7 @@ html {
   text-align: center;
   margin: auto;
   height: 80%;
-  width: 80%;
+  width: 50%;
   background-color: rgb(255, 255, 255);
   border-radius: 1rem;
   box-shadow: 0 0 1rem rgba(0, 0, 0, 0.111);
@@ -943,14 +983,14 @@ html {
 
 .topJapanese {
   margin: auto auto 1rem auto;
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-family: 'Figtree', 'Figtree-fallback', 'Figtree-fallback-android', 'Noto Sans', 'NotoSans-fallback', 'NotoSans-fallback-android', sans-serif;
   font-size: 1.5rem;
   font-weight: bold;
 }
 
 .bottomEng {
   margin: 0 auto;
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-family: 'Figtree', 'Figtree-fallback', 'Figtree-fallback-android', 'Noto Sans', 'NotoSans-fallback', 'NotoSans-fallback-android', sans-serif;
   color: rgb(105, 105, 105);
 }
 
@@ -973,12 +1013,14 @@ html {
   width: 100%;
 }
 
-.cardsButton1, .cardsButton2 {
+.cardsButton1,
+.cardsButton2 {
   min-height: fit-content;
   min-width: fit-content;
-  width: 24%;
+  width: 10vw;
+  height: 7vh;
   padding: 0.4rem;
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-family: 'Figtree', 'Figtree-fallback', 'Figtree-fallback-android', 'Noto Sans', 'NotoSans-fallback', 'NotoSans-fallback-android', sans-serif;
   font-size: 1rem;
   font-weight: bold;
   border-radius: 0.5rem;
@@ -1049,7 +1091,7 @@ html {
 .wordBottom {
   text-align: center;
   font-size: large;
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-family: 'Figtree', 'Figtree-fallback', 'Figtree-fallback-android', 'Noto Sans', 'NotoSans-fallback', 'NotoSans-fallback-android', sans-serif;
 }
 
 .wordTop {
@@ -1084,6 +1126,7 @@ html {
   position: fixed;
   width: 100vw;
   height: 100vh;
+  background-color: rgba(76, 93, 107, 0.21);
   z-index: 19;
 }
 
@@ -1093,6 +1136,45 @@ html {
   .wordsCounterContainer,
   .kanjiCounterContainer {
     visibility: hidden;
+  }
+
+  .logoImage2 {
+    display: none;
+  }
+
+  span {
+    margin: 0;
+  }
+
+  .cardsButton1,
+  .cardsButton2 {
+    width: 30vw;
+  }
+
+  .buttonMenu {
+    display: flex;
+    background: none;
+    border-width: 0;
+    padding: 0.5rem 0 0.5rem 0;
+    align-items: center;
+    justify-content: flex-start;
+    margin: 0.3rem;
+    min-height: fit-content;
+    min-width: fit-content;
+    width: 95%;
+    font-size: 1.2rem;
+    font-family: Arial, Helvetica, sans-serif;
+    color: rgb(71, 63, 63);
+    cursor: pointer;
+  }
+
+  .buttonMenu:hover::before {
+    display: none;
+  }
+
+  .buttonMenu:hover {
+    background-color: rgb(205, 232, 255);
+    border-radius: 0.7rem;
   }
 
   .gridItemLeft {
@@ -1105,7 +1187,7 @@ html {
   }
 
   .gridItemMiddle {
-    margin-top: 5rem;
+    margin-top: 4rem;
     width: 100vw;
   }
 
@@ -1122,12 +1204,21 @@ html {
     width: 100vw;
   }
 
+  .cardConteiner,
+  .testPageContainer {
+    width: 100%;
+  }
+
   .middle {
     width: 100vw;
   }
 
   .learningContainer {
-    width: 80vw;
+    width: 86%;
+  }
+
+  .cardBox {
+    width: 90%;
   }
 
   .search {
@@ -1165,7 +1256,11 @@ html {
     mask-image: none;
   }
 
-  .headLine .lessonsContainer {
+  .middleActions {
+    width: 100%;
+  }
+
+  .headLine {
     overflow-y: unset;
     -webkit-mask-image: none;
     mask-image: none;
@@ -1174,15 +1269,39 @@ html {
   .card {
     width: 80%;
   }
+
+  .topMetuButtonsContainer {
+    display: none;
+  }
+
+  .scoreContainer {
+    width: 80%;
+  }
+
+  .logoImage {
+    width: 100%;
+    height: 5rem;
+    min-height: fit-content;
+    background-color: rgb(205, 232, 255);
+    text-align: center;
+    align-content: center;
+    font-family: 'Figtree', 'Figtree-fallback', 'Figtree-fallback-android', 'Noto Sans', 'NotoSans-fallback', 'NotoSans-fallback-android', sans-serif;
+    font-size: clamp(2.2rem, 3vw, 3rem);
+    font-weight: bold;
+    color: rgb(56, 135, 205);
+    ;
+  }
 }
 
 @media (min-width: 768px) {
+
+  .boxExitMobile,
   .leftMenuBatton {
     visibility: hidden;
   }
 
-  .boxExitMobile {
-    visibility: hidden;
+  .gridItemLeft {
+    display: none;
   }
 }
 

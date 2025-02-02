@@ -1503,7 +1503,7 @@ function App() {
     <div className='body'>
       {/* {loadingAnim()} */}
       <div className='gridContainer'>
-        <div className={`gridItemLeft ${actionStatus.leftMenu ? 'leftMenuShow' : null}`}>
+        <div className={`gridItemLeft ${actionStatus.leftMenu ? 'leftMenuShow' : 'hidde'}`}>
           <div className='logoImage'>日本語学習</div>
           <button className='buttonMenu' onClick={() => newPageStatus('Home')}>
             <div className='home'></div>
@@ -1542,7 +1542,8 @@ function App() {
         }></div>
         <div className='middle'>
           <div className='topMenuContainer'>
-            <div className='leftMenuBatton' onClick={
+          <div className='logoImage2'>日本語学習</div>
+          <div className='leftMenuBatton' onClick={
               () => setActionStatus((a) => ({
                 ...a,
                 leftMenu: !a.leftMenu
@@ -1561,6 +1562,26 @@ function App() {
             <div className='uresLogoContainer'>
               <p className='topMenuText'>User name</p>
             </div>
+          </div>
+          <div className='topMetuButtonsContainer'>
+            <button className='buttonMenu' onClick={() => newPageStatus('Home')}>
+              <span> Home </span>
+            </button>
+            <button className='buttonMenu' onClick={() => newPageStatus('Lessons')}>
+              <span> Lessons </span>
+            </button>
+            <button className='buttonMenu' onClick={() => newPageStatus('Cards')}>
+              <span> Cadrs </span>
+            </button>
+            <button className='buttonMenu' onClick={() => newPageStatus('Kanji')}>
+              <span> Kanji </span>
+            </button>
+            <button className='buttonMenu' onClick={() => newPageStatus('Test')}>
+              <span> Test </span>
+            </button>
+            <button className='buttonMenu' onClick={() => newPageStatus('Vocabulary')}>
+              <span> Vocabulary </span>
+            </button>
           </div>
           <div className='gridItemMiddle'>
             {pages()}
