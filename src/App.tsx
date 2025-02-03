@@ -1165,7 +1165,7 @@ function App() {
       case 'Cards':
         return (
           <div className={`gridItemMiddle ${actionStatus.animationStatus ? 'testPageEnter' : 'testPageExit'}`}>
-            <div className='headText'>
+            <div className='headTextCards'>
               <h1 className='h1Lesson'>Vocabulary practice</h1>
               <p className='pLesson'>Flesh cards</p>
             </div>
@@ -1178,7 +1178,6 @@ function App() {
               <div className='cardBox'>
                 <p className='pLesson'>Words 1/10</p>
                 <div className='progressBarWords'></div>
-                <div className='scrollBar'></div>
                 <div className='topJapanese'>こんにちは</div>
                 <div className='bottomEng'>Hello</div>
                 <div className='exampleBar'><b>こんにちはせんせい</b><br />Hello, sensei.</div>
@@ -1278,20 +1277,23 @@ function App() {
             <div className={`practisContainer ${practiceContent.lessonType === '-て form verb' ? null : 'remove'}`}>
               <h1 className='h1Lesson'>{practiceContent.headLine}</h1>
               <p className='pLesson'>{practiceContent.pline}</p>
-              <div className={`exContainer ${currentWord.indexCounter > cardWords.length ? 'remove' : null}`}>
-                <h2 className='h2Lesson'>て group</h2>
-                <p className='pLesson'>Words: <b>{currentWord.indexCounter} / {cardWords.length}</b></p>
-                <div className='cardContainerOne'>
-                  <div className='card'>
-                    <div className='japanWord'>{currentWord.japanese}</div>
-                    <div className={`meaning ${currentWord.hidde ? '' : 'hidde'}`}>{currentWord.meaningEng}, Group: {currentWord.currentGroup}</div>
-                    <div className='buttonContainerCard'>
-                      <button onClick={() => cardWordsUpdate('Hard')} className='cardButton'>Repeat</button>
-                      <button onClick={() => cardWordsUpdate('Check')} className='cardButton'>Check</button>
-                      <button onClick={() => cardWordsUpdate('Next')} className='cardButton'>Next</button>
+              <h2 className='h2Lesson'>て group</h2>
+              <div className='cardConteiner'>
+                <div className='cardBox'>
+                  <p className='pLesson'>Words <b>{currentWord.indexCounter} / {cardWords.length}</b></p>
+                  <div className='progressBarWords'></div>
+                  <div className='topJapanese'>{currentWord.japanese}</div>
+                  <div className={`bottomEng 'hidde'`}></div>
+                  <div className='exampleBar'>
+                    <div className={`'' ${currentWord.hidde ? '' : 'hidde'}`}>
+                      {currentWord.meaningEng}<br /> Group: {currentWord.currentGroup}
                     </div>
                   </div>
-                  <p className='pLesson'> Check: &lt; | Next: &gt; | Repeat: v</p>
+                  <div className='bottomButtons'>
+                    <button onClick={() => cardWordsUpdate('Hard')} className='cardsButton1'>Repeat</button>
+                    <button onClick={() => cardWordsUpdate('Check')} className='cardButton'>Check</button>
+                    <button onClick={() => cardWordsUpdate('Next')} className='cardsButton2'>Next</button>
+                  </div>
                 </div>
               </div>
               <div className={`containerDone ${currentWord.indexCounter > cardWords.length ? null : 'remove'}`}>
@@ -1542,8 +1544,8 @@ function App() {
         }></div>
         <div className='middle'>
           <div className='topMenuContainer'>
-          <div className='logoImage2'>日本語学習</div>
-          <div className='leftMenuBatton' onClick={
+            <div className='logoImage2'>日本語学習</div>
+            <div className='leftMenuBatton' onClick={
               () => setActionStatus((a) => ({
                 ...a,
                 leftMenu: !a.leftMenu

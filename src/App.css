@@ -241,6 +241,7 @@ span {
 }
 
 .gridItemMiddle {
+  margin-bottom: 0;
   height: calc(100% - 5rem);
   width: 100%;
   background-color: rgb(249, 249, 249);
@@ -253,10 +254,6 @@ span {
   display: flex;
   flex-wrap: wrap;
   width: 86%;
-}
-
-.gridItemMiddle .headText {
-  width: 60vw;
 }
 
 .settContainer {
@@ -407,13 +404,15 @@ span {
   margin-bottom: 2rem;
 }
 
-.headText {
+.headText, .headTextCards {
   width: 100%;
   padding: 1rem 0 0 1rem;
   box-sizing: border-box;
-  justify-self: center;
   height: fit-content;
-  margin-bottom: 1.5rem;
+}
+
+.headTextCards {
+  margin: 0 0 1.5rem 20vw;
 }
 
 .h1Welcom,
@@ -422,7 +421,7 @@ span {
 }
 
 .learningContainer {
-  margin: 2rem auto auto auto;
+  margin: 2rem auto 2rem auto;
   padding: 2rem;
   box-sizing: border-box;
   background-color: rgb(255, 255, 255);
@@ -917,10 +916,6 @@ span {
   visibility: hidden;
 }
 
-.gridItemMiddle .headText {
-  margin-bottom: 0;
-}
-
 .cardsSelector {
   display: flex;
   margin: 1rem auto 0 auto;
@@ -1234,6 +1229,10 @@ span {
   .inputQ {
     width: 80%;
     padding: 0 0.5rem 0 0.5rem;
+  }
+
+  .headTextCards {
+    margin: 0 0 1.5rem 0;
   }
 
   .testSection {
