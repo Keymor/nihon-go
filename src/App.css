@@ -756,26 +756,29 @@ span {
   justify-items: center;
   text-align: center;
 }
-
-.inputQ {
-  margin: auto;
-  justify-self: center;
+.cardConteiner
+.inputQ, .inputA {
+  margin: 1rem auto auto auto;
+  padding: 0.5rem;
   align-content: center;
   font-family: 'Figtree', 'Figtree-fallback', 'Figtree-fallback-android', 'Noto Sans', 'NotoSans-fallback', 'NotoSans-fallback-android', sans-serif;
   font-size: 1.1rem;
   font-weight: bold;
-  border-radius: 0.6rem;
+  border-radius: 1rem;
   border-width: 0.1rem;
-  border-color: rgb(120, 120, 120);
-  color: black;
-  text-align: center;
+  border-color: rgb(221, 221, 221);
+  color: rgb(74, 74, 74);
   border-style: solid;
   background-color: rgb(255, 255, 255);
   box-shadow: 0 0.2rem 0.3rem rgba(0, 0, 0, 0.102);
   height: 2rem;
   min-height: fit-content;
   min-width: fit-content;
-  width: 30%;
+  width: 50%;
+}
+
+.inputA {
+  margin: auto auto 1rem auto;
 }
 
 .testSection {
@@ -791,7 +794,7 @@ span {
   width: 15rem;
   justify-self: center;
   align-content: center;
-  margin: 1rem auto auto auto;
+  margin: auto;
 }
 
 .doneButton,
@@ -804,12 +807,32 @@ span {
   border-radius: 1rem;
   border-style: solid;
   border-width: 0.1rem;
-  border-color: rgb(120, 120, 120);
-  background-color: rgb(228, 228, 228);
+  border-color: rgb(231, 231, 231);
+  background-color: rgb(255, 255, 255);
+  box-shadow: 0 0.2rem 0.3rem rgba(0, 0, 0, 0.052);
   font-family: 'Figtree', 'Figtree-fallback', 'Figtree-fallback-android', 'Noto Sans', 'NotoSans-fallback', 'NotoSans-fallback-android', sans-serif;
   font-size: 0.8rem;
   font-weight: bold;
   cursor: pointer;
+}
+
+.exitButton {
+  position: absolute;
+  margin: 0;
+  right: 0;
+  transform: translate(100%, -100%);
+  width: 2.5rem;
+  height: 2.5rem;
+  padding: 0.3rem;
+  border-radius: 3rem;
+}
+
+.exitButton:hover {
+  background-color: rgb(242, 242, 242);
+}
+
+.doneButton {
+  margin: 1rem auto 1rem auto;
 }
 
 .doneButton:hover {
@@ -902,10 +925,9 @@ span {
 }
 
 .cardButton {
-  margin-top: 0;
   width: fit-content;
   background-color: rgb(148, 205, 255);
-  margin: 0 0.2rem 0 0.2rem;
+  margin: auto;
 }
 
 .cardButton:hover {
@@ -934,6 +956,7 @@ span {
 }
 
 .cardConteiner {
+  position: relative;
   height: 70vh;
   width: 60vw;
   margin: auto;
@@ -942,10 +965,12 @@ span {
 }
 
 .cardBox {
+  position: relative;
   display: flex;
   flex-direction: column;
   text-align: center;
   margin: auto;
+  min-height: fit-content;
   height: 80%;
   width: 50%;
   background-color: rgb(255, 255, 255);
@@ -1026,6 +1051,7 @@ span {
   box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.118);
   transition: 0.3s;
   cursor: pointer;
+  margin: auto;
 }
 
 .cardsButton1:hover {
@@ -1040,9 +1066,6 @@ span {
   scale: 110%;
 }
 
-.cardsButton2 {
-  margin-left: auto;
-}
 
 .contenContainerForUser {
   background-color: rgba(240, 248, 255, 0);

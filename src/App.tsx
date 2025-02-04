@@ -1054,6 +1054,16 @@ function App() {
     }
   ]
 
+  const kanji = [
+    {
+      japanese: "国",
+      meaningEng: "Country",
+      exampleSentence: "その王がその国を治めていた。",
+      lvlGroup: 1,
+      currentWordId: 1
+    }
+  ]
+
   const pages = () => {
     switch (actionStatus.pageSet) {
       case 'Home':
@@ -1193,7 +1203,30 @@ function App() {
       case 'Kanji':
         //add Kanji cards
         return (
-          <div className={`cardConteiner ${actionStatus.animationStatus ? 'testPageEnter' : 'testPageExit'}`}> Page "Kanji" </div>
+          <div className={`gridItemMiddle ${actionStatus.animationStatus ? 'testPageEnter' : 'testPageExit'}`}>
+            <div className='headTextCards'>
+              <h1 className='h1Lesson'>Kanji practice</h1>
+              <p className='pLesson'>Flesh cards</p>
+            </div>
+            <select className='cardsSelector'>
+              <option>Group 1</option>
+              <option>Group 2</option>
+              <option>Group 3</option>
+            </select>
+            <div className='cardConteiner'>
+              <div className='cardBox'>
+                <p className='pLesson'>Kanji 1/10</p>
+                <div className='progressBarWords'></div>
+                <div className='topJapanese'>{kanji[0].japanese}</div>
+                <div className='bottomEng'>{kanji[0].meaningEng}</div>
+                <div className='exampleBar'><b>{kanji[0].exampleSentence}</b></div>
+                <div className='bottomButtons'>
+                  <button className='cardsButton1'>Hard</button>
+                  <button className='cardsButton2'>Next</button>
+                </div>
+              </div>
+            </div>
+          </div>
         )
         break;
       case 'Test':
@@ -1233,34 +1266,38 @@ function App() {
             <div className={`practisContainer ${practiceContent.lessonType === 'Translation' ? null : 'remove'}`}>
               <h1 className='h1Lesson'>Practice sentence</h1>
               <p className='pLesson'>Create a sentence</p>
-              <div className={`exContainer ${(practiceContent.id + 1) > 5 ? 'remove' : null}`}>
-                <h2 className='h2Lesson'>{practiceContent.name}</h2>
-                <p className='pLesson'>Remain {practiceContent.id + 1}/5</p>
-                <div className='inputQ'>{practiceContent.question}</div>
-                <h2 className='h2Lesson'>Answer</h2>
-                <div className={`inputQ ${practiceContent.isCorrect ? 'correct' : null}`}>{practiceContent.input}</div><br />
-                <button onClick={
-                  () => answerCheck(practiceContent.input)
-                }
-                  className={`doneButton ${practiceContent.isCorrect ? 'remove' : null}`}>
-                  Done
-                </button>
-                <button
-                  onClick={
-                    () => newLessonPage(practiceContent.id)
-                  } className={`doneButton ${practiceContent.isCorrect ? null : 'remove'}`}>
-                  Next!
-                </button>
-                <div className='testSection'>
-                  {practiceContent.words.map((item, index) => {
-                    return (
-                      <button
-                        key={index}
-                        className={`wordsSelector ${practiceContent.input.includes(item) ? 'active' : null}`}
-                        onClick={() => addWordsFun(item)}>{item}
-                      </button>
-                    )
-                  })}
+              <div className='cardConteiner'>
+                <div className='cardBox'>
+                  <button className={`exitButton ${practiceContent.lessonType === 'Translation' ? null : 'remove'}`}
+                    onClick={() => lessonSelector('Exit', 0)}>❌</button>
+                  <p className='pLesson'>Sentence {practiceContent.id + 1}/5</p>
+                  <div className='progressBarWords'></div>
+                  <div className='inputQ'>{practiceContent.question}</div>
+                  <h2 className='h2Lesson'>Answer</h2>
+                  <div className={`inputA ${practiceContent.isCorrect ? 'correct' : null}`}>{practiceContent.input}</div>
+                  <div className='testSection'>
+                    {practiceContent.words.map((item, index) => {
+                      return (
+                        <button
+                          key={index}
+                          className={`wordsSelector ${practiceContent.input.includes(item) ? 'active' : null}`}
+                          onClick={() => addWordsFun(item)}>{item}
+                        </button>
+                      )
+                    })}
+                  </div>
+                  <button
+                    onClick={
+                      () => newLessonPage(practiceContent.id)
+                    } className={`doneButton ${practiceContent.isCorrect ? null : 'remove'}`}>
+                    Next!
+                  </button>
+                  <button onClick={
+                    () => answerCheck(practiceContent.input)
+                  }
+                    className={`doneButton ${practiceContent.isCorrect ? 'remove' : null}`}>
+                    Done
+                  </button>
                 </div>
               </div>
               <div className={`containerDone ${practiceContent.id + 1 > 5 ? '' : 'remove'}`}>
@@ -1271,15 +1308,15 @@ function App() {
                 </div>
               </div>
             </div>
-            <button className={`exitButton ${practiceContent.lessonType === 'Translation' ? null : 'remove'}`}
-              onClick={() => lessonSelector('Exit', 0)}>Exit</button>
             {/* CardLesson */}
             <div className={`practisContainer ${practiceContent.lessonType === '-て form verb' ? null : 'remove'}`}>
               <h1 className='h1Lesson'>{practiceContent.headLine}</h1>
               <p className='pLesson'>{practiceContent.pline}</p>
-              <h2 className='h2Lesson'>て group</h2>
+              <h1 className='h1Lesson'>-て group</h1>
+              <p className='pLesson'>Card practice</p>
               <div className='cardConteiner'>
                 <div className='cardBox'>
+                <button className='exitButton' onClick={() => lessonSelector('Exit', 0)}>❌</button>
                   <p className='pLesson'>Words <b>{currentWord.indexCounter} / {cardWords.length}</b></p>
                   <div className='progressBarWords'></div>
                   <div className='topJapanese'>{currentWord.japanese}</div>
@@ -1303,7 +1340,6 @@ function App() {
                   <button className='exitButton' onClick={() => lessonSelector('Exit', 0)}>Go back</button>
                 </div>
               </div>
-              <button className='exitButton' onClick={() => lessonSelector('Exit', 0)}>Exit</button>
             </div>
           </div>
         )
