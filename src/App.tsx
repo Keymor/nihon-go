@@ -66,6 +66,7 @@ function App() {
       lesson: 0
     }
   )
+
   //hard words array
   const [repeat, setRepeat] = useState<wordsArray[]>([])
   //new words array
@@ -97,6 +98,297 @@ function App() {
     currentWordId: 0
   })
 
+  const [cardWords, setCardWords] = useState([
+    {
+      "japanWord": "いきます 1",
+      "meaning": "to go",
+      "isItChecked": false,
+      "group": 1,
+      "isItSpecial": false,
+      id: 0
+    },
+    {
+      "japanWord": "きます 2",
+      "meaning": "to come",
+      "isItChecked": false,
+      "group": 3,
+      "isItSpecial": false,
+      id: 1
+    },
+    {
+      "japanWord": "かえります 3",
+      "meaning": "to return",
+      "isItChecked": false,
+      "group": 1,
+      "isItSpecial": false,
+      id: 2
+    },
+    {
+      "japanWord": "おきます 4",
+      "meaning": "to wake up",
+      "isItChecked": false,
+      "group": 2,
+      "isItSpecial": false,
+      id: 3
+    },
+    {
+      "japanWord": "ねます 5",
+      "meaning": "to sleep",
+      "isItChecked": false,
+      "group": 2,
+      "isItSpecial": false,
+      id: 4
+    },
+    {
+      "japanWord": "はたらきます 6",
+      "meaning": "to work",
+      "isItChecked": false,
+      "group": 1,
+      "isItSpecial": false,
+      id: 5
+    },
+    {
+      "japanWord": "やすみます 7",
+      "meaning": "to rest",
+      "isItChecked": false,
+      "group": 1,
+      "isItSpecial": false,
+      id: 6
+    },
+    {
+      "japanWord": "べんきょうします 8",
+      "meaning": "to study",
+      "isItChecked": false,
+      "group": 3,
+      "isItSpecial": false,
+      id: 7
+    },
+    /* {
+      "japanWord": "おわります",
+      "meaning": "to finish",
+      "isItChecked": false,
+      "group": 1,
+      "isItSpecial": false
+    },
+    {
+      "japanWord": "たべます",
+      "meaning": "to eat",
+      "isItChecked": false,
+      "group": 2,
+      "isItSpecial": false
+    },
+    {
+      "japanWord": "のみます",
+      "meaning": "to drink",
+      "isItChecked": false,
+      "group": 1,
+      "isItSpecial": false
+    },
+    {
+      "japanWord": "すいます",
+      "meaning": "to smoke",
+      "isItChecked": false,
+      "group": 1,
+      "isItSpecial": false
+    },
+    {
+      "japanWord": "みます",
+      "meaning": "to see, watch",
+      "isItChecked": false,
+      "group": 2,
+      "isItSpecial": false
+    },
+    {
+      "japanWord": "ききます",
+      "meaning": "to listen, hear",
+      "isItChecked": false,
+      "group": 1,
+      "isItSpecial": false
+    },
+    {
+      "japanWord": "よみます",
+      "meaning": "to read",
+      "isItChecked": false,
+      "group": 1,
+      "isItSpecial": false
+    },
+    {
+      "japanWord": "かきます",
+      "meaning": "to write",
+      "isItChecked": false,
+      "group": 1,
+      "isItSpecial": false
+    },
+    {
+      "japanWord": "かいます",
+      "meaning": "to buy",
+      "isItChecked": false,
+      "group": 1,
+      "isItSpecial": false
+    },
+    {
+      "japanWord": "とります",
+      "meaning": "to take (a photo)",
+      "isItChecked": false,
+      "group": 1,
+      "isItSpecial": false
+    },
+    {
+      "japanWord": "あいます",
+      "meaning": "to meet",
+      "isItChecked": false,
+      "group": 1,
+      "isItSpecial": false
+    },
+    {
+      "japanWord": "きります",
+      "meaning": "to cut",
+      "isItChecked": false,
+      "group": 1,
+      "isItSpecial": false
+    },
+    {
+      "japanWord": "おくります",
+      "meaning": "to send",
+      "isItChecked": false,
+      "group": 1,
+      "isItSpecial": false
+    },
+    {
+      "japanWord": "あげます",
+      "meaning": "to give",
+      "isItChecked": false,
+      "group": 2,
+      "isItSpecial": false
+    },
+    {
+      "japanWord": "もらいます",
+      "meaning": "to receive",
+      "isItChecked": false,
+      "group": 1,
+      "isItSpecial": false
+    },
+    {
+      "japanWord": "かします",
+      "meaning": "to lend",
+      "isItChecked": false,
+      "group": 1,
+      "isItSpecial": false
+    },
+    {
+      "japanWord": "かります",
+      "meaning": "to borrow",
+      "isItChecked": false,
+      "group": 2,
+      "isItSpecial": false
+    },
+    {
+      "japanWord": "おしえます",
+      "meaning": "to teach, tell",
+      "isItChecked": false,
+      "group": 2,
+      "isItSpecial": false
+    },
+    {
+      "japanWord": "ならいます",
+      "meaning": "to learn",
+      "isItChecked": false,
+      "group": 1,
+      "isItSpecial": false
+    },
+    {
+      "japanWord": "あります",
+      "meaning": "to exist (inanimate)",
+      "isItChecked": false,
+      "group": 2,
+      "isItSpecial": false
+    },
+    {
+      "japanWord": "います",
+      "meaning": "to exist (animate)",
+      "isItChecked": false,
+      "group": 2,
+      "isItSpecial": false
+    },
+    {
+      "japanWord": "わかります",
+      "meaning": "to understand",
+      "isItChecked": false,
+      "group": 1,
+      "isItSpecial": false
+    },
+    {
+      "japanWord": "かかります",
+      "meaning": "to take (time, money)",
+      "isItChecked": false,
+      "group": 1,
+      "isItSpecial": false
+    },
+    {
+      "japanWord": "あそびます",
+      "meaning": "to play",
+      "isItChecked": false,
+      "group": 1,
+      "isItSpecial": false
+    },
+    {
+      "japanWord": "およぎます",
+      "meaning": "to swim",
+      "isItChecked": false,
+      "group": 1,
+      "isItSpecial": false
+    },
+    {
+      "japanWord": "むかえます",
+      "meaning": "to go to meet, welcome",
+      "isItChecked": false,
+      "group": 2,
+      "isItSpecial": false
+    },
+    {
+      "japanWord": "つかれます",
+      "meaning": "to get tired",
+      "isItChecked": false,
+      "group": 2,
+      "isItSpecial": false
+    },
+    {
+      "japanWord": "だします",
+      "meaning": "to take out, send",
+      "isItChecked": false,
+      "group": 1,
+      "isItSpecial": false
+    },
+    {
+      "japanWord": "けっこんします",
+      "meaning": "to marry",
+      "isItChecked": false,
+      "group": 3,
+      "isItSpecial": false
+    },
+    {
+      "japanWord": "かいものします",
+      "meaning": "to shop",
+      "isItChecked": false,
+      "group": 3,
+      "isItSpecial": false
+    },
+    {
+      "japanWord": "しょくじします",
+      "meaning": "to have a meal",
+      "isItChecked": false,
+      "group": 3,
+      "isItSpecial": false
+    },
+    {
+      "japanWord": "さんぽします",
+      "meaning": "to take a walk",
+      "isItChecked": false,
+      "group": 3,
+      "isItSpecial": false
+    } */
+  ]
+  )
   const [practiceContent, setPracticeContent] = useState({
     name: 'Translation',
     id: 0,
@@ -112,7 +404,7 @@ function App() {
     headLine: '',
     pline: '',
   })
-  //To component
+
   const practiceQuestions = [
     {
       id: 1,
@@ -146,7 +438,6 @@ function App() {
     },
   ];
 
-  //To component
   const lessons = [
     {
       name: 'Lesson 1 - Greetings & Introductions',
@@ -262,7 +553,6 @@ function App() {
     }
   ]
 
-  //To component
   const lessonsArray = [
     {
       type: 'Translation',
@@ -282,7 +572,6 @@ function App() {
     }
   ]
 
-  //To component
   const kanji = [
     {
       japanese: "国",
@@ -682,7 +971,7 @@ function App() {
     }
   }
 
-  //refresh lesson parameters
+  //update array with new words for lesson
   const cardStartLesson = () => {
     setShowWord(cardWordsNew[0])
     setActionStatus((a) => ({
@@ -736,7 +1025,7 @@ function App() {
       ...a, progressCardProcent: a.progressCardProcent + 5, wordCheck: false
     }))
   }
-  // Add desctiption!
+
   const clickHard = () => {
     if (repeat.length === 1 && wordsList.length === 0) {
       return
@@ -759,7 +1048,6 @@ function App() {
     setActionStatus((a) => ({ ...a, wordCheck: false }))
   }
 
-  // Add desctiption!
   useEffect(() => {
     if (showWord.japanWord === 'Done!') {
       setActionStatus((a) => ({ ...a, endLesson: true }))
