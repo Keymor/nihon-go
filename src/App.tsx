@@ -33,6 +33,7 @@ function App() {
     wordsAmount?: number;
     endLesson: boolean;
     wordCheck: boolean;
+    lessonNumber: number;
   }
 
   const [searchValue, setSearchValue] = useState('')
@@ -53,7 +54,8 @@ function App() {
     startLesson: false,
     wordsAmount: 0, //mount of words from wordArray
     endLesson: false,
-    wordCheck: false
+    wordCheck: false,
+    lessonNumber: 0
   })
 
   const [showWord, setShowWord] = useState<wordsArray>(
@@ -697,10 +699,13 @@ function App() {
               <h1 className='h1Lesson'>Vocabulary practice</h1>
               <p className='pLesson'>Flesh cards</p>
             </div>
-            <select className='cardsSelector'>
-              <option>Lesson 1</option>
-              <option>Lesson 2</option>
-              <option>Lesson 3</option>
+            <select value={actionStatus.lessonNumber} 
+            onChange={handleOption} 
+            className='cardsSelector'
+            style={{ display: actionStatus.startLesson ? 'none' : ''}}>
+              <option value={0}>Choose lesson</option>
+              <option value={1}>Lesson 1</option>
+              <option value={2}>Lesson 2</option>
             </select>
             <button className={
               `cardsButtonStart ${actionStatus.startLesson ?
@@ -735,7 +740,13 @@ function App() {
                   <button className={`cardsButton2 ${actionStatus.endLesson ? 'remove' : ''}`}
                     onClick={clickNext}>{actionStatus.wordCheck ? 'Next' : 'Check'}
                   </button>
-                  <button onClick={() => setActionStatus((a) => ({ ...a, startLesson: false }))} className={`cardsButton1 ${actionStatus.endLesson ? '' : 'remove'}`}>Exit</button>
+                  <button onClick={
+                    () => setActionStatus((a) => ({
+                      ...a, startLesson: false 
+                      }))} 
+                      className={
+                        `cardsButton1 ${actionStatus.endLesson ? '' : 'remove'}`
+                        }>Exit</button>
                 </div>
               </div>
             </div>
@@ -973,7 +984,17 @@ function App() {
 
   //update array with new words for lesson
   const cardStartLesson = () => {
-    setShowWord(cardWordsNew[0])
+    if (actionStatus.lessonNumber === 0) {
+      return
+    }
+
+    const lessonCheck = (array: wordsArray) => {
+      return array.lesson === actionStatus.lessonNumber
+    }
+    const lessonsArray = cardWordsNew.filter(lessonCheck)
+    
+
+    setShowWord(lessonsArray[0])
     setActionStatus((a) => ({
       ...a,
       startLesson: true,
@@ -984,7 +1005,11 @@ function App() {
       wordsAmount: cardWordsNew.length
     }))
     setRepeat((r) => r = [])
-    setWordsList([...cardWordsNew])
+    setWordsList([...lessonsArray])
+  }
+
+  const handleOption = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    setActionStatus((a) => ({...a, lessonNumber: parseFloat(event.target.value)}));
   }
 
   //switch to new words and check translition
@@ -1022,7 +1047,7 @@ function App() {
     }
 
     setActionStatus((a) => ({
-      ...a, progressCardProcent: a.progressCardProcent + 5, wordCheck: false
+      ...a, progressCardProcent: a.progressCardProcent + 10, wordCheck: false
     }))
   }
 
@@ -1233,14 +1258,14 @@ function App() {
             <div className='cards'></div>
             <span> Cadrs </span>
           </button>
-          <button className='buttonMenu' onClick={() => newPageStatus('Kanji')}>
+          {/* <button className='buttonMenu' onClick={() => newPageStatus('Kanji')}>
             <div className='kanji'></div>
             <span> Kanji </span>
           </button>
           <button className='buttonMenu' onClick={() => newPageStatus('Test')}>
             <div className='checkBoolean'></div>
             <span> Test </span>
-          </button>
+          </button> */}
           <button className='buttonMenu' onClick={() => newPageStatus('Vocabulary')}>
             <div className='vocabulary'></div>
             <span> Vocabulary </span>
@@ -1289,12 +1314,12 @@ function App() {
             <button className='buttonMenu' onClick={() => newPageStatus('Cards')}>
               <span> Cadrs </span>
             </button>
-            <button className='buttonMenu' onClick={() => newPageStatus('Kanji')}>
+            {/* <button className='buttonMenu' onClick={() => newPageStatus('Kanji')}>
               <span> Kanji </span>
             </button>
             <button className='buttonMenu' onClick={() => newPageStatus('Test')}>
               <span> Test </span>
-            </button>
+            </button> */}
             <button className='buttonMenu' onClick={() => newPageStatus('Vocabulary')}>
               <span> Vocabulary </span>
             </button>

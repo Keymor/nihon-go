@@ -946,6 +946,7 @@ span {
   min-height: fit-content;
   font-family: 'Figtree', 'Figtree-fallback', 'Figtree-fallback-android', 'Noto Sans', 'NotoSans-fallback', 'NotoSans-fallback-android', sans-serif;
   font-weight: bold;
+  font-size: 1rem;
   padding: 0.5rem;
   border-radius: 0.5rem;
   border-style: solid;
@@ -953,11 +954,12 @@ span {
   border-width: 0.1rem;
   background-color: rgb(255, 255, 255);
   box-shadow: 0 0 1rem rgba(0, 0, 0, 0.111);
+  color: rgb(95, 95, 95);
+  text-align: center;
 }
 
 .cardConteiner {
   position: relative;
-  height: 70vh;
   width: 60vw;
   margin: auto;
   align-content: center;
