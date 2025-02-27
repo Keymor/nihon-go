@@ -1,286 +1,165 @@
 const cardWordsNew = [
-    {
-      "japanWord": "いきます1",
-      "meaning": "to go",
-      "isItChecked": false,
-      "group": 1,
-      "isItSpecial": false,
-    },
-    {
-      "japanWord": "きます2",
-      "meaning": "to come",
-      "isItChecked": false,
-      "group": 3,
-      "isItSpecial": false,
-    },
-    {
-      "japanWord": "かえります3",
-      "meaning": "to return",
-      "isItChecked": false,
-      "group": 1,
-      "isItSpecial": false,
-    },
-    /* {
-      "japanWord": "おきます",
-      "meaning": "to wake up",
-      "isItChecked": false,
-      "group": 2,
-      "isItSpecial": false,
-    },
-    {
-      "japanWord": "ねます",
-      "meaning": "to sleep",
-      "isItChecked": false,
-      "group": 2,
-      "isItSpecial": false,
-    },
-    {
-      "japanWord": "はたらきます",
-      "meaning": "to work",
-      "isItChecked": false,
-      "group": 1,
-      "isItSpecial": false,
-    },
-    {
-      "japanWord": "やすみます",
-      "meaning": "to rest",
-      "isItChecked": false,
-      "group": 1,
-      "isItSpecial": false,
-    },
-    {
-      "japanWord": "べんきょうします",
-      "meaning": "to study",
-      "isItChecked": false,
-      "group": 3,
-      "isItSpecial": false,
-    },
-    {
-      "japanWord": "おわります",
-      "meaning": "to finish",
-      "isItChecked": false,
-      "group": 1,
-      "isItSpecial": false
-    },
-    {
-      "japanWord": "たべます",
-      "meaning": "to eat",
-      "isItChecked": false,
-      "group": 2,
-      "isItSpecial": false
-    },
-    {
-      "japanWord": "のみます",
-      "meaning": "to drink",
-      "isItChecked": false,
-      "group": 1,
-      "isItSpecial": false
-    },
-    {
-      "japanWord": "すいます",
-      "meaning": "to smoke",
-      "isItChecked": false,
-      "group": 1,
-      "isItSpecial": false
-    },
-    {
-      "japanWord": "みます",
-      "meaning": "to see, watch",
-      "isItChecked": false,
-      "group": 2,
-      "isItSpecial": false
-    },
-    {
-      "japanWord": "ききます",
-      "meaning": "to listen, hear",
-      "isItChecked": false,
-      "group": 1,
-      "isItSpecial": false
-    },
-    {
-      "japanWord": "よみます",
-      "meaning": "to read",
-      "isItChecked": false,
-      "group": 1,
-      "isItSpecial": false
-    },
-    {
-      "japanWord": "かきます",
-      "meaning": "to write",
-      "isItChecked": false,
-      "group": 1,
-      "isItSpecial": false
-    },
-    {
-      "japanWord": "かいます",
-      "meaning": "to buy",
-      "isItChecked": false,
-      "group": 1,
-      "isItSpecial": false
-    },
-    {
-      "japanWord": "とります",
-      "meaning": "to take (a photo)",
-      "isItChecked": false,
-      "group": 1,
-      "isItSpecial": false
-    },
-    {
-      "japanWord": "あいます",
-      "meaning": "to meet",
-      "isItChecked": false,
-      "group": 1,
-      "isItSpecial": false
-    },
-    {
-      "japanWord": "きります",
-      "meaning": "to cut",
-      "isItChecked": false,
-      "group": 1,
-      "isItSpecial": false
-    },
-    {
-      "japanWord": "おくります",
-      "meaning": "to send",
-      "isItChecked": false,
-      "group": 1,
-      "isItSpecial": false
-    },
-    {
-      "japanWord": "あげます",
-      "meaning": "to give",
-      "isItChecked": false,
-      "group": 2,
-      "isItSpecial": false
-    },
-    {
-      "japanWord": "もらいます",
-      "meaning": "to receive",
-      "isItChecked": false,
-      "group": 1,
-      "isItSpecial": false
-    },
-    {
-      "japanWord": "かします",
-      "meaning": "to lend",
-      "isItChecked": false,
-      "group": 1,
-      "isItSpecial": false
-    },
-    {
-      "japanWord": "かります",
-      "meaning": "to borrow",
-      "isItChecked": false,
-      "group": 2,
-      "isItSpecial": false
-    },
-    {
-      "japanWord": "おしえます",
-      "meaning": "to teach, tell",
-      "isItChecked": false,
-      "group": 2,
-      "isItSpecial": false
-    },
-    {
-      "japanWord": "ならいます",
-      "meaning": "to learn",
-      "isItChecked": false,
-      "group": 1,
-      "isItSpecial": false
-    },
-    {
-      "japanWord": "あります",
-      "meaning": "to exist (inanimate)",
-      "isItChecked": false,
-      "group": 2,
-      "isItSpecial": false
-    },
-    {
-      "japanWord": "います",
-      "meaning": "to exist (animate)",
-      "isItChecked": false,
-      "group": 2,
-      "isItSpecial": false
-    },
-    {
-      "japanWord": "わかります",
-      "meaning": "to understand",
-      "isItChecked": false,
-      "group": 1,
-      "isItSpecial": false
-    },
-    {
-      "japanWord": "かかります",
-      "meaning": "to take (time, money)",
-      "isItChecked": false,
-      "group": 1,
-      "isItSpecial": false
-    },
-    {
-      "japanWord": "あそびます",
-      "meaning": "to play",
-      "isItChecked": false,
-      "group": 1,
-      "isItSpecial": false
-    },
-    {
-      "japanWord": "およぎます",
-      "meaning": "to swim",
-      "isItChecked": false,
-      "group": 1,
-      "isItSpecial": false
-    },
-    {
-      "japanWord": "むかえます",
-      "meaning": "to go to meet, welcome",
-      "isItChecked": false,
-      "group": 2,
-      "isItSpecial": false
-    },
-    {
-      "japanWord": "つかれます",
-      "meaning": "to get tired",
-      "isItChecked": false,
-      "group": 2,
-      "isItSpecial": false
-    },
-    {
-      "japanWord": "だします",
-      "meaning": "to take out, send",
-      "isItChecked": false,
-      "group": 1,
-      "isItSpecial": false
-    },
-    {
-      "japanWord": "けっこんします",
-      "meaning": "to marry",
-      "isItChecked": false,
-      "group": 3,
-      "isItSpecial": false
-    },
-    {
-      "japanWord": "かいものします",
-      "meaning": "to shop",
-      "isItChecked": false,
-      "group": 3,
-      "isItSpecial": false
-    },
-    {
-      "japanWord": "しょくじします",
-      "meaning": "to have a meal",
-      "isItChecked": false,
-      "group": 3,
-      "isItSpecial": false
-    },
-    {
-      "japanWord": "さんぽします",
-      "meaning": "to take a walk",
-      "isItChecked": false,
-      "group": 3,
-      "isItSpecial": false
-    } */
-  ]
+  {
+    japanWord: "わたし",
+    meaning: "I / me",
+    isItVerb: false,
+    isItNaun: true,
+    isItAdjective: false,
+    lesson: 1
+  },
+  {
+    japanWord: "あなた",
+    meaning: "You",
+    isItVerb: false,
+    isItNaun: true,
+    isItAdjective: false,
+    lesson: 1
+  },
+  {
+    japanWord: "せんせい",
+    meaning: "Teacher",
+    isItVerb: false,
+    isItNaun: true,
+    isItAdjective: false,
+    lesson: 1
+  },
+  {
+    japanWord: "がくせい",
+    meaning: "Student",
+    isItVerb: false,
+    isItNaun: true,
+    isItAdjective: false,
+    lesson: 1
+  },
+  {
+    japanWord: "かいしゃいん",
+    meaning: "Office worker",
+    isItVerb: false,
+    isItNaun: true,
+    isItAdjective: false,
+    lesson: 1
+  },
+  {
+    japanWord: "にほんじん",
+    meaning: "Japanese (person)",
+    isItVerb: false,
+    isItNaun: true,
+    isItAdjective: false,
+    lesson: 1
+  },
+  {
+    japanWord: "アメリカじん",
+    meaning: "American (person)",
+    isItVerb: false,
+    isItNaun: true,
+    isItAdjective: false,
+    lesson: 1
+  },
+  {
+    japanWord: "はじめまして",
+    meaning: "Nice to meet you",
+    isItVerb: false,
+    isItNaun: false,
+    isItAdjective: false,
+    lesson: 1
+  },
+  {
+    japanWord: "よろしくおねがいします",
+    meaning: "Please treat me well",
+    isItVerb: false,
+    isItNaun: false,
+    isItAdjective: false,
+    lesson: 1
+  },
+  {
+    japanWord: "です",
+    meaning: "To be (am, is, are)",
+    isItVerb: true,
+    isItNaun: false,
+    isItAdjective: false,
+    lesson: 1
+  },
+  {
+    japanWord: "これ",
+    meaning: "This (near speaker)",
+    isItVerb: false,
+    isItNaun: true,
+    isItAdjective: false,
+    lesson: 2
+},
+{
+    japanWord: "それ",
+    meaning: "That (near listener)",
+    isItVerb: false,
+    isItNaun: true,
+    isItAdjective: false,
+    lesson: 2
+},
+{
+    japanWord: "あれ",
+    meaning: "That (over there, away from both)",
+    isItVerb: false,
+    isItNaun: true,
+    isItAdjective: false,
+    lesson: 2
+},
+{
+    japanWord: "この",
+    meaning: "This ~ (followed by a noun)",
+    isItVerb: false,
+    isItNaun: false,
+    isItAdjective: true,
+    lesson: 2
+},
+{
+    japanWord: "その",
+    meaning: "That ~ (followed by a noun)",
+    isItVerb: false,
+    isItNaun: false,
+    isItAdjective: true,
+    lesson: 2
+},
+{
+    japanWord: "あの",
+    meaning: "That ~ over there (followed by a noun)",
+    isItVerb: false,
+    isItNaun: false,
+    isItAdjective: true,
+    lesson: 2
+},
+{
+    japanWord: "なん / なに",
+    meaning: "What",
+    isItVerb: false,
+    isItNaun: true,
+    isItAdjective: false,
+    lesson: 2
+},
+{
+    japanWord: "ほん",
+    meaning: "Book",
+    isItVerb: false,
+    isItNaun: true,
+    isItAdjective: false,
+    lesson: 2
+},
+{
+    japanWord: "かぎ",
+    meaning: "Key",
+    isItVerb: false,
+    isItNaun: true,
+    isItAdjective: false,
+    lesson: 2
+},
+{
+    japanWord: "じしょ",
+    meaning: "Dictionary",
+    isItVerb: false,
+    isItNaun: true,
+    isItAdjective: false,
+    lesson: 2
+}
+]
 
-  export default cardWordsNew
+export default cardWordsNew
 
-  
