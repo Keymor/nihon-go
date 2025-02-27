@@ -1,7 +1,20 @@
-import { useState, ChangeEvent } from 'react'
+import { useState, ChangeEvent, useEffect } from 'react'
 import './App.css'
+import verbTGroup from './twords'
+import cardWordsNew from './vocabulary'
+
+//change repeat checker for hard words 
 
 function App() {
+
+  interface wordsArray {
+    japanWord: string,
+    meaning: string,
+    isItChecked: boolean,
+    group: number,
+    isItSpecial: boolean,
+    repeat?: boolean
+  }
 
   interface actionArray {
     animationStatus: boolean;
@@ -10,18 +23,57 @@ function App() {
     isHidde: boolean;
     isHiddeMenu: boolean;
     leftMenu: boolean;
+    progressCard: number;
+    progressCardProcent: number;
+    oneProcent: number;
+    cardIndex: number;
+    messege: string;
+    repeatNum: number;
+    startLesson: boolean;
+    wordsAmount?: number;
+    endLesson: boolean;
+    wordCheck: boolean;
   }
 
-  /*  const [loading, setLoading] = useState(true) */
   const [searchValue, setSearchValue] = useState('')
+
+  const [checkBoolean, setCheckBoolean] = useState(false) //check translation for card
+
   const [actionStatus, setActionStatus] = useState<actionArray>({
     animationStatus: true,
     logIn: false,
     pageSet: 'Home',
     isHidde: false,
     isHiddeMenu: false,
-    leftMenu: false
+    leftMenu: false,
+    progressCard: 1, //show word number
+    progressCardProcent: 0, //for progress bar
+    oneProcent: 0,
+    cardIndex: 0, //for index in array
+    messege: '', //for done in the end
+    repeatNum: 0,
+    startLesson: false,
+    wordsAmount: 0, //mount of words from wordArray
+    endLesson: false,
+    wordCheck: false
   })
+
+  const [showWord, setShowWord] = useState<wordsArray>(
+    {
+      japanWord: "おわります",
+      meaning: "to finish",
+      isItChecked: false,
+      group: 1,
+      isItSpecial: false,
+      repeat: false
+    }
+  )
+
+  //hard words array
+  const [repeat, setRepeat] = useState<wordsArray[]>([])
+  //new words array
+  const [wordsList, setWordsList] = useState<wordsArray[]>([])
+
   const [currentWord, setCurrentWord] = useState<{
     japanese: string;
     meaningEng: string;
@@ -47,538 +99,6 @@ function App() {
     indexCounter: 1,
     currentWordId: 0
   })
-
-  const verbTGroup = [
-    {
-      japanese: "いきます",
-      meaningEng: "to go",
-      exampleSentence: "がっこうへいきます。",
-      currentGroup: 1,
-      numberOfWords: 0,
-      checkedNumbers: [""],
-      hidde: false,
-      difficalId: [],
-      difIndex: 0,
-      checkHard: false,
-      indexCounter: 2,
-      currentWordId: 2
-    },
-    {
-      japanese: "かえります",
-      meaningEng: "to return",
-      exampleSentence: "いえにかえります。",
-      currentGroup: 1,
-      numberOfWords: 0,
-      checkedNumbers: [""],
-      hidde: false,
-      difficalId: [],
-      difIndex: 0,
-      checkHard: false,
-      indexCounter: 3,
-      currentWordId: 3
-    },
-    {
-      japanese: "たべます",
-      meaningEng: "to eat",
-      exampleSentence: "りんごをたべます。",
-      currentGroup: 2,
-      numberOfWords: 0,
-      checkedNumbers: [""],
-      hidde: false,
-      difficalId: [],
-      difIndex: 0,
-      checkHard: false,
-      indexCounter: 4,
-      currentWordId: 4
-    },
-    {
-      japanese: "のみます",
-      meaningEng: "to drink",
-      exampleSentence: "みずをのみます。",
-      currentGroup: 1,
-      numberOfWords: 0,
-      checkedNumbers: [""],
-      hidde: false,
-      difficalId: [],
-      difIndex: 0,
-      checkHard: false,
-      indexCounter: 5,
-      currentWordId: 5
-    },
-    {
-      japanese: "みます",
-      meaningEng: "to see, watch",
-      exampleSentence: "えいがをみます。",
-      currentGroup: 2,
-      numberOfWords: 0,
-      checkedNumbers: [""],
-      hidde: false,
-      difficalId: [],
-      difIndex: 0,
-      checkHard: false,
-      indexCounter: 6,
-      currentWordId: 6
-    },
-    {
-      japanese: "ききます",
-      meaningEng: "to listen",
-      exampleSentence: "おんがくをききます。",
-      currentGroup: 1,
-      numberOfWords: 0,
-      checkedNumbers: [""],
-      hidde: false,
-      difficalId: [],
-      difIndex: 0,
-      checkHard: false,
-      indexCounter: 7,
-      currentWordId: 7
-    },
-    {
-      japanese: "はなします",
-      meaningEng: "to speak",
-      exampleSentence: "にほんごをはなします。",
-      currentGroup: 1,
-      numberOfWords: 0,
-      checkedNumbers: [""],
-      hidde: false,
-      difficalId: [],
-      difIndex: 0,
-      checkHard: false,
-      indexCounter: 8,
-      currentWordId: 8
-    },
-    {
-      japanese: "します",
-      meaningEng: "to do",
-      exampleSentence: "しゅくだいをします。",
-      currentGroup: 3,
-      numberOfWords: 0,
-      checkedNumbers: [""],
-      hidde: false,
-      difficalId: [],
-      difIndex: 0,
-      checkHard: false,
-      indexCounter: 9,
-      currentWordId: 9
-    },
-    {
-      japanese: "べんきょうします",
-      meaningEng: "to study",
-      exampleSentence: "にほんごをべんきょうします。",
-      currentGroup: 3,
-      numberOfWords: 0,
-      checkedNumbers: [""],
-      hidde: false,
-      difficalId: [],
-      difIndex: 0,
-      checkHard: false,
-      indexCounter: 10,
-      currentWordId: 10
-    },
-    {
-      japanese: "あります",
-      meaningEng: "to exist (inanimate objects)",
-      currentGroup: 1,
-      numberOfWords: 0,
-      checkedNumbers: [""],
-      hidde: false,
-      difficalId: [],
-      difIndex: 0,
-      checkHard: false,
-      indexCounter: 11,
-      currentWordId: 11
-    },
-    {
-      japanese: "います",
-      meaningEng: "to exist (animate objects)",
-      currentGroup: 2,
-      numberOfWords: 0,
-      checkedNumbers: [""],
-      hidde: false,
-      difficalId: [],
-      difIndex: 0,
-      checkHard: false,
-      indexCounter: 12,
-      currentWordId: 12
-    },
-    {
-      japanese: "かきます",
-      meaningEng: "to write",
-      currentGroup: 1,
-      numberOfWords: 0,
-      checkedNumbers: [""],
-      hidde: false,
-      difficalId: [],
-      difIndex: 0,
-      checkHard: false,
-      indexCounter: 13,
-      currentWordId: 13
-    },
-    {
-      japanese: "よみます",
-      meaningEng: "to read",
-      currentGroup: 1,
-      numberOfWords: 0,
-      checkedNumbers: [""],
-      hidde: false,
-      difficalId: [],
-      difIndex: 0,
-      checkHard: false,
-      indexCounter: 14,
-      currentWordId: 14
-    },
-    {
-      japanese: "ねます",
-      meaningEng: "to sleep",
-      currentGroup: 2,
-      numberOfWords: 0,
-      checkedNumbers: [""],
-      hidde: false,
-      difficalId: [],
-      difIndex: 0,
-      checkHard: false,
-      indexCounter: 15,
-      currentWordId: 15
-    },
-    {
-      japanese: "おきます",
-      meaningEng: "to wake up",
-      currentGroup: 2,
-      numberOfWords: 0,
-      checkedNumbers: [""],
-      hidde: false,
-      difficalId: [],
-      difIndex: 0,
-      checkHard: false,
-      indexCounter: 16,
-      currentWordId: 16
-    },
-    {
-      japanese: "はたらきます",
-      meaningEng: "to work",
-      currentGroup: 1,
-      numberOfWords: 0,
-      checkedNumbers: [""],
-      hidde: false,
-      difficalId: [],
-      difIndex: 0,
-      checkHard: false,
-      indexCounter: 17,
-      currentWordId: 17
-    },
-    {
-      japanese: "やすみます",
-      meaningEng: "to rest",
-      currentGroup: 1,
-      numberOfWords: 0,
-      checkedNumbers: [""],
-      hidde: false,
-      difficalId: [],
-      difIndex: 0,
-      checkHard: false,
-      indexCounter: 18,
-      currentWordId: 18
-    },
-    {
-      japanese: "わかります",
-      meaningEng: "to understand",
-      currentGroup: 1,
-      numberOfWords: 0,
-      checkedNumbers: [""],
-      hidde: false,
-      difficalId: [],
-      difIndex: 0,
-      checkHard: false,
-      indexCounter: 19,
-      currentWordId: 19
-    },
-    {
-      japanese: "おしえます",
-      meaningEng: "to teach",
-      currentGroup: 2,
-      numberOfWords: 0,
-      checkedNumbers: [""],
-      hidde: false,
-      difficalId: [],
-      difIndex: 0,
-      checkHard: false,
-      indexCounter: 20,
-      currentWordId: 20
-    },
-    {
-      japanese: "ならいます",
-      meaningEng: "to learn",
-      currentGroup: 1,
-      numberOfWords: 0,
-      checkedNumbers: [""],
-      hidde: false,
-      difficalId: [],
-      difIndex: 0,
-      checkHard: false,
-      indexCounter: 21,
-      currentWordId: 21
-    },
-    {
-      japanese: "かいます",
-      meaningEng: "to buy",
-      currentGroup: 1,
-      numberOfWords: 0,
-      checkedNumbers: [""],
-      hidde: false,
-      difficalId: [],
-      difIndex: 0,
-      checkHard: false,
-      indexCounter: 22,
-      currentWordId: 22
-    },
-    {
-      japanese: "あげます",
-      meaningEng: "to give",
-      currentGroup: 2,
-      numberOfWords: 0,
-      checkedNumbers: [""],
-      hidde: false,
-      difficalId: [],
-      difIndex: 0,
-      checkHard: false,
-      indexCounter: 23,
-      currentWordId: 23
-    },
-    {
-      japanese: "もらいます",
-      meaningEng: "to receive",
-      currentGroup: 1,
-      numberOfWords: 0,
-      checkedNumbers: [""],
-      hidde: false,
-      difficalId: [],
-      difIndex: 0,
-      checkHard: false,
-      indexCounter: 24,
-      currentWordId: 24
-    },
-    {
-      japanese: "かります",
-      meaningEng: "to borrow",
-      currentGroup: 2,
-      numberOfWords: 0,
-      checkedNumbers: [""],
-      hidde: false,
-      difficalId: [],
-      difIndex: 0,
-      checkHard: false,
-      indexCounter: 25,
-      currentWordId: 25
-    },
-    {
-      japanese: "かします",
-      meaningEng: "to lend",
-      currentGroup: 1,
-      numberOfWords: 0,
-      checkedNumbers: [""],
-      hidde: false,
-      difficalId: [],
-      difIndex: 0,
-      checkHard: false,
-      indexCounter: 26,
-      currentWordId: 26
-    },
-    {
-      japanese: "きります",
-      meaningEng: "to cut",
-      currentGroup: 1,
-      numberOfWords: 0,
-      checkedNumbers: [""],
-      hidde: false,
-      difficalId: [],
-      difIndex: 0,
-      checkHard: false,
-      indexCounter: 27,
-      currentWordId: 27
-    },
-    {
-      japanese: "つくります",
-      meaningEng: "to make",
-      currentGroup: 1,
-      numberOfWords: 0,
-      checkedNumbers: [""],
-      hidde: false,
-      difficalId: [],
-      difIndex: 0,
-      checkHard: false,
-      indexCounter: 28,
-      currentWordId: 28
-    },
-    {
-      japanese: "おくります",
-      meaningEng: "to send",
-      currentGroup: 1,
-      numberOfWords: 0,
-      checkedNumbers: [""],
-      hidde: false,
-      difficalId: [],
-      difIndex: 0,
-      checkHard: false,
-      indexCounter: 29,
-      currentWordId: 29
-    },
-    {
-      japanese: "いれます",
-      meaningEng: "to insert",
-      currentGroup: 2,
-      numberOfWords: 0,
-      checkedNumbers: [""],
-      hidde: false,
-      difficalId: [],
-      difIndex: 0,
-      checkHard: false,
-      indexCounter: 30,
-      currentWordId: 30
-    },
-    {
-      japanese: "でます",
-      meaningEng: "to leave",
-      currentGroup: 2,
-      numberOfWords: 0,
-      checkedNumbers: [""],
-      hidde: false,
-      difficalId: [],
-      difIndex: 0,
-      checkHard: false,
-      indexCounter: 31,
-      currentWordId: 31
-    },
-    {
-      japanese: "のぼります",
-      meaningEng: "to climb",
-      currentGroup: 1,
-      numberOfWords: 0,
-      checkedNumbers: [""],
-      hidde: false,
-      difficalId: [],
-      difIndex: 0,
-      checkHard: false,
-      indexCounter: 32,
-      currentWordId: 32
-    },
-    {
-      japanese: "はしります",
-      meaningEng: "to run",
-      currentGroup: 1,
-      numberOfWords: 0,
-      checkedNumbers: [""],
-      hidde: false,
-      difficalId: [],
-      difIndex: 0,
-      checkHard: false,
-      indexCounter: 33,
-      currentWordId: 33
-    },
-    {
-      japanese: "あそびます",
-      meaningEng: "to play",
-      currentGroup: 1,
-      numberOfWords: 0,
-      checkedNumbers: [""],
-      hidde: false,
-      difficalId: [],
-      difIndex: 0,
-      checkHard: false,
-      indexCounter: 34,
-      currentWordId: 34
-    },
-    {
-      japanese: "とびます",
-      meaningEng: "to jump",
-      currentGroup: 1,
-      numberOfWords: 0,
-      checkedNumbers: [""],
-      hidde: false,
-      difficalId: [],
-      difIndex: 0,
-      checkHard: false,
-      indexCounter: 35,
-      currentWordId: 35
-    },
-    {
-      japanese: "まちます",
-      meaningEng: "to wait",
-      currentGroup: 1,
-      numberOfWords: 0,
-      checkedNumbers: [""],
-      hidde: false,
-      difficalId: [],
-      difIndex: 0,
-      checkHard: false,
-      indexCounter: 36,
-      currentWordId: 36
-    },
-    {
-      japanese: "かたづけます",
-      meaningEng: "to tidy up",
-      currentGroup: 2,
-      numberOfWords: 0,
-      checkedNumbers: [""],
-      hidde: false,
-      difficalId: [],
-      difIndex: 0,
-      checkHard: false,
-      indexCounter: 37,
-      currentWordId: 37
-    },
-    {
-      japanese: "ならべます",
-      meaningEng: "to arrange",
-      currentGroup: 2,
-      numberOfWords: 0,
-      checkedNumbers: [""],
-      hidde: false,
-      difficalId: [],
-      difIndex: 0,
-      checkHard: false,
-      indexCounter: 38,
-      currentWordId: 38
-    },
-    {
-      japanese: "あびます",
-      meaningEng: "to bathe",
-      currentGroup: 2,
-      numberOfWords: 0,
-      checkedNumbers: [""],
-      hidde: false,
-      difficalId: [],
-      difIndex: 0,
-      checkHard: false,
-      indexCounter: 39,
-      currentWordId: 39
-    },
-    {
-      japanese: "つかいます",
-      meaningEng: "to use",
-      currentGroup: 1,
-      numberOfWords: 0,
-      checkedNumbers: [""],
-      hidde: false,
-      difficalId: [],
-      difIndex: 0,
-      checkHard: false,
-      indexCounter: 40,
-      currentWordId: 40
-    },
-    {
-      japanese: "つかれます",
-      meaningEng: "to get tired",
-      currentGroup: 2,
-      numberOfWords: 0,
-      checkedNumbers: [""],
-      hidde: false,
-      difficalId: [],
-      difIndex: 0,
-      checkHard: false,
-      indexCounter: 41,
-      currentWordId: 41
-    },
-  ]
 
   const [cardWords, setCardWords] = useState([
     {
@@ -1303,7 +823,7 @@ function App() {
               <div className={`containerDone ${practiceContent.id + 1 > 5 ? '' : 'remove'}`}>
                 <div className='practiceDonePageContainer'>
                   <h1 className='h1Lesson'>Congratulation!</h1>
-                  <p className='pLesson'>You can choose new test</p>
+                  <p className='pLesson'>You can choose new checkBoolean</p>
                   <button className='exitButton' onClick={() => lessonSelector('Exit', 0)}>Go back</button>
                 </div>
               </div>
@@ -1316,7 +836,7 @@ function App() {
               <p className='pLesson'>Card practice</p>
               <div className='cardConteiner'>
                 <div className='cardBox'>
-                <button className='exitButton' onClick={() => lessonSelector('Exit', 0)}>❌</button>
+                  <button className='exitButton' onClick={() => lessonSelector('Exit', 0)}>❌</button>
                   <p className='pLesson'>Words <b>{currentWord.indexCounter} / {cardWords.length}</b></p>
                   <div className='progressBarWords'></div>
                   <div className='topJapanese'>{currentWord.japanese}</div>
@@ -1336,7 +856,7 @@ function App() {
               <div className={`containerDone ${currentWord.indexCounter > cardWords.length ? null : 'remove'}`}>
                 <div className='practiceDonePageContainer'>
                   <h1 className='h1Lesson'>Congratulation!</h1>
-                  <p className='pLesson'>You can choose new test</p>
+                  <p className='pLesson'>You can choose new checkBoolean</p>
                   <button className='exitButton' onClick={() => lessonSelector('Exit', 0)}>Go back</button>
                 </div>
               </div>
@@ -1374,8 +894,141 @@ function App() {
           </div>
         )
         break;
+      case 'DEV':
+        return (
+          <div className={`gridItemMiddle ${actionStatus.animationStatus ? 'testPageEnter' : 'testPageExit'}`}>
+            <div className='headTextCards'>
+              <h1 className='h1Lesson'>Test page</h1>
+              <p className='pLesson'>Test cards</p>
+            </div>
+            <select className='cardsSelector'>
+              <option>Lesson 1</option>
+              <option>Lesson 2</option>
+              <option>Lesson 3</option>
+            </select>
+            <button className={
+              `cardsButtonStart ${actionStatus.startLesson ?
+                'remove' :
+                ''
+              }`}
+              onClick={cardStartLesson}
+            >Start
+            </button>
+            <div className={`cardConteiner ${actionStatus.startLesson ? '' : 'remove'}`}>
+              <div className='cardBox'>
+                <p className='pLesson'>{
+                  <>New words {wordsList.length}<br />Repeat {repeat.length}</>
+                }
+                </p>
+                <div className='progressBarWords'
+                  style={{ '--before-width': `${actionStatus.progressCardProcent}%` } as React.CSSProperties}>
+                </div>
+                <div className='topJapanese'
+                  style={{ 'margin': 'auto' } as React.CSSProperties}>{showWord.japanWord}
+                </div>
+                <div className='bottomEng'
+                  style={{ 'height': '1rem' }}>{actionStatus.wordCheck ? showWord.meaning : null}
+                </div>
+                <p>
+                  {actionStatus.messege.length === 0 ? '' : actionStatus.messege}
+                </p>
+                <div className='bottomButtons'>
+                  <button className={`cardsButton1 ${actionStatus.endLesson ? 'remove' : ''}`}
+                    onClick={clickHard}>Repeat
+                  </button>
+                  <button className={`cardsButton2 ${actionStatus.endLesson ? 'remove' : ''}`}
+                    onClick={clickNext}>{actionStatus.wordCheck ? 'Next' : 'Check'}
+                  </button>
+                  <button onClick={() => setActionStatus((a) => ({ ...a, startLesson: false }))} className={`cardsButton1 ${actionStatus.endLesson ? '' : 'remove'}`}>Exit</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        )
+        break;
     }
   }
+
+  //update array with new words for lesson
+  const cardStartLesson = () => {
+    setShowWord((s) => s = ({
+      japanWord: "おわります1",
+      meaning: "to finish",
+      isItChecked: false,
+      group: 1,
+      isItSpecial: false,
+      repeat: false
+    }))
+    setActionStatus((a) => ({ ...a, startLesson: true, progressCardProcent: 0, progressCard: 0, oneProcent: 100 / wordsList.length }))
+    setRepeat((r) => r = [])
+    setWordsList([...cardWordsNew])
+  }
+
+  //switch to new words and check translition
+  const clickNext = () => {
+    if (!actionStatus.wordCheck) {
+      setActionStatus((a) => ({ ...a, wordCheck: true }))
+      return
+    }
+    let newArray = wordsList.slice(1)
+
+    if (wordsList.length > 1) {
+      // If multiple words remain, move to the next one
+      setWordsList((w) => w = newArray)
+      setShowWord((s) => s = newArray[0])
+    } else if (wordsList.length <= 1 && repeat.length > 0) {
+      // If only one word remains, switch to repeat or mark as "Done!"
+      if (wordsList.length === 1) {
+        // Switch to repeat
+        setWordsList((w) => w = [])
+        setShowWord((s) => ({ ...s, japanWord: repeat[0].japanWord, meaning: repeat[0].meaning }))
+      } else {
+        // Make it done or move to next word
+        repeat.length === 1 ?
+          setShowWord((s) => ({ ...s, japanWord: 'Done!', meaning: 'Done!' })) :
+          setShowWord((s) => ({ ...s, japanWord: repeat[1].japanWord, meaning: repeat[1].meaning }))
+        // Clear repeat for done or remove first word
+        repeat.length === 1 ?
+          setRepeat((r) => r = []) :
+          setRepeat((r) => r.slice(1))
+      }
+    } else {
+      setWordsList((w) => w = [])
+      setShowWord((s) => ({ ...s, japanWord: 'Done!', meaning: 'Done!' }))
+    }
+
+    setActionStatus((a) => ({
+      ...a, progressCardProcent: a.progressCardProcent + a.oneProcent, wordCheck: false
+    }))
+  }
+
+  const clickHard = () => {
+    if (repeat.length === 1) {
+      return
+    }
+    wordsList.length === 0 ? setRepeat((r) => ([...r, r[0]])) : setRepeat((r) => ([...r, wordsList[0]]))
+    let newArray = wordsList.slice(1)
+
+    if (wordsList.length === 1) {
+      setWordsList((w) => w = [])
+      setShowWord((s) => ({ ...s, japanWord: repeat[0].japanWord, meaning: repeat[0].meaning }))
+    } else {
+      if (newArray.length > 0) {
+        setWordsList((w) => w = newArray)
+        setShowWord((s) => ({ ...s, japanWord: newArray[0].japanWord, meaning: newArray[0].meaning }))
+      } else {
+        setShowWord((s) => ({ ...s, japanWord: repeat[1].japanWord, meaning: repeat[1].meaning }))
+        setRepeat((r) => r.slice(1))
+      }
+    }
+    setActionStatus((a) => ({ ...a, wordCheck: false }))
+  }
+
+  useEffect(() => {
+    if (showWord.japanWord === 'Done!') {
+      setActionStatus((a) => ({ ...a, endLesson: true }))
+    }
+  }, [showWord])
 
   const lessonPage = (lesson: number) => {
     console.log(lesson)
@@ -1396,6 +1049,7 @@ function App() {
         break;
 
       case '-て form verb':
+
         setCurrentWord((currentWord) => ({
           ...currentWord,
           japanese: cardWords[0].japanWord,
@@ -1529,7 +1183,7 @@ function App() {
       actionStatus.leftMenu ?
         setActionStatus((a) => ({ ...a, leftMenu: !a.leftMenu })) : null
       setActionStatus((a) => ({ ...a, pageSet: status }))
-      setActionStatus((a) => ({ ...a, animationStatus: true }))
+      setActionStatus((a) => ({ ...a, animationStatus: true, startLesson: false }))
     }, 300)
   }
 
@@ -1560,7 +1214,7 @@ function App() {
             <span> Kanji </span>
           </button>
           <button className='buttonMenu' onClick={() => newPageStatus('Test')}>
-            <div className='test'></div>
+            <div className='checkBoolean'></div>
             <span> Test </span>
           </button>
           <button className='buttonMenu' onClick={() => newPageStatus('Vocabulary')}>
@@ -1619,6 +1273,9 @@ function App() {
             </button>
             <button className='buttonMenu' onClick={() => newPageStatus('Vocabulary')}>
               <span> Vocabulary </span>
+            </button>
+            <button className='buttonMenu' onClick={() => newPageStatus('DEV')}>
+              <span> DEV </span>
             </button>
           </div>
           <div className='gridItemMiddle'>

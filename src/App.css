@@ -971,7 +971,7 @@ span {
   text-align: center;
   margin: auto;
   min-height: fit-content;
-  height: 80%;
+  height: 65%;
   width: 50%;
   background-color: rgb(255, 255, 255);
   border-radius: 1rem;
@@ -990,11 +990,12 @@ span {
 .progressBarWords::before {
   content: '';
   position: absolute;
-  width: 20%;
+  width: var(--before-width);
   height: 100%;
   background-color: rgb(122, 186, 255);
   border-radius: 0.5rem;
   left: 0;
+  transition: 0.3s;
 }
 
 .cardBox .pLesson {
@@ -1034,7 +1035,8 @@ span {
 }
 
 .cardsButton1,
-.cardsButton2 {
+.cardsButton2,
+.cardsButtonStart {
   min-height: fit-content;
   min-width: fit-content;
   width: 10vw;
@@ -1066,6 +1068,11 @@ span {
   scale: 110%;
 }
 
+.cardsButtonStart{
+  scale: 120%;
+  margin: 2rem 50% 0 50%;
+  transform: translate(-50%);
+}
 
 .contenContainerForUser {
   background-color: rgba(240, 248, 255, 0);
