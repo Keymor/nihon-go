@@ -2,6 +2,7 @@ import { useState, ChangeEvent, useEffect } from 'react'
 import './App.css'
 import verbTGroup from './twords'
 import cardWordsNew from './vocabulary'
+import lessonShow from './lessonsList'
 
 //change repeat checker for hard words 
 
@@ -34,6 +35,7 @@ function App() {
     endLesson: boolean;
     wordCheck: boolean;
     lessonNumber: number;
+    lessonId: number
   }
 
   const [searchValue, setSearchValue] = useState('')
@@ -55,7 +57,8 @@ function App() {
     wordsAmount: 0, //mount of words from wordArray
     endLesson: false,
     wordCheck: false,
-    lessonNumber: 0
+    lessonNumber: 0,
+    lessonId: 0,
   })
 
   const [showWord, setShowWord] = useState<wordsArray>(
@@ -647,7 +650,6 @@ function App() {
         )
         break;
       case 'Lessons':
-
         return (
           <div className={`middleActions ${actionStatus.animationStatus ? 'testPageEnter' : 'testPageExit'}`}>
             <div className='vocabContainer'>
@@ -675,10 +677,13 @@ function App() {
                 </p> */}
               </div>
             </div>
-            <div className='lessonsContainer'>
+            <div className='lessonShowBox' style={{ display: actionStatus.lessonId === 0 ? 'none' : '' }}>
+              {lessonShow(actionStatus.lessonId)}
+            </div>
+            <div className='lessonsContainer' style={{ display: actionStatus.lessonId > 0 ? 'none' : '' }}>
               {lessons.map((item, index) => {
                 return (
-                  <div key={index} onClick={() => lessonPage(item.number)} className='lessonSelectorBox'>
+                  <div key={index} onClick={() => lessonPage(index + 1)} className='lessonSelectorBox'>
                     <div className='lvl'>{item.lvl}</div>
                     <h1 className='h1LessonButton'>{item.name}</h1>
                     <p className='pLessonButton'>{item.description}</p>
@@ -688,6 +693,17 @@ function App() {
                   </div>
                 )
               })}
+            </div>
+            <div style={{ display: actionStatus.lessonId === 0 ? 'none' : '' }}>
+              <button className='cardsButton1' onClick={() => setActionStatus((a) => ({ ...a, lessonId: 0 }))}>
+                Back
+              </button>
+              <button className='cardsButton1' onClick={() => setActionStatus((a) => ({ ...a, lessonId: 0 }))}>
+                Complete
+              </button>
+              <button className='cardsButton1' onClick={() => newPageStatus('Cards')}>
+                Go to cards -{'>'}
+              </button>
             </div>
           </div>
         )
@@ -699,54 +715,57 @@ function App() {
               <h1 className='h1Lesson'>Vocabulary practice</h1>
               <p className='pLesson'>Flesh cards</p>
             </div>
-            <select value={actionStatus.lessonNumber} 
-            onChange={handleOption} 
-            className='cardsSelector'
-            style={{ display: actionStatus.startLesson ? 'none' : ''}}>
-              <option value={0}>Choose lesson</option>
-              <option value={1}>Lesson 1</option>
-              <option value={2}>Lesson 2</option>
-            </select>
-            <button className={
-              `cardsButtonStart ${actionStatus.startLesson ?
-                'remove' :
-                ''
-              }`}
-              onClick={cardStartLesson}
-            >Start
-            </button>
-            <div className={`cardConteiner ${actionStatus.startLesson ? '' : 'remove'}`}>
+            <div className={`cardConteiner`}>
               <div className='cardBox'>
-                <p className='pLesson'>{
-                  <>New words {wordsList.length}<br />Repeat {repeat.length}</>
-                }
-                </p>
-                <div className='progressBarWords'
-                  style={{ '--before-width': `${actionStatus.progressCardProcent}%` } as React.CSSProperties}>
-                </div>
-                <div className='topJapanese'
-                  style={{ 'margin': 'auto' } as React.CSSProperties}>{showWord.japanWord}
-                </div>
-                <div className='bottomEng'
-                  style={{ 'height': '1rem' }}>{actionStatus.wordCheck ? showWord.meaning : null}
-                </div>
-                <p>
-                  {actionStatus.messege.length === 0 ? '' : actionStatus.messege}
-                </p>
-                <div className='bottomButtons'>
-                  <button className={`cardsButton1 ${actionStatus.endLesson ? 'remove' : ''}`}
-                    onClick={clickHard}>Repeat
+                <div className='selectorBox'>
+                  <select value={actionStatus.lessonNumber}
+                    onChange={handleOption}
+                    className='cardsSelector'
+                    style={{ display: actionStatus.startLesson ? 'none' : '' }}>
+                    <option value={0}>Choose lesson</option>
+                    <option value={1}>Lesson 1</option>
+                    <option value={2}>Lesson 2</option>
+                  </select>
+                  <button className={
+                    `cardsButtonStart ${actionStatus.startLesson ?
+                      'remove' :
+                      ''
+                    }`}
+                    onClick={cardStartLesson}
+                  >Start
                   </button>
-                  <button className={`cardsButton2 ${actionStatus.endLesson ? 'remove' : ''}`}
-                    onClick={clickNext}>{actionStatus.wordCheck ? 'Next' : 'Check'}
-                  </button>
-                  <button onClick={
-                    () => setActionStatus((a) => ({
-                      ...a, startLesson: false 
-                      }))} 
+                </div>
+                <div className={`${actionStatus.startLesson ? '' : 'hidde'}`}>
+                  <p className='pLesson'>{
+                    <>New words {wordsList.length}<br />Repeat {repeat.length}</>
+                  }
+                  </p>
+                  <div className='progressBarWords'
+                    style={{ '--before-width': `${actionStatus.progressCardProcent}%` } as React.CSSProperties}>
+                  </div>
+                  <div className='topJapanese'>{showWord.japanWord}
+                  </div>
+                  <div className='bottomEng'
+                    style={{ 'height': '1rem' }}>{actionStatus.wordCheck ? showWord.meaning : null}
+                  </div>
+                  <p>
+                    {actionStatus.messege.length === 0 ? '' : actionStatus.messege}
+                  </p>
+                  <div className='bottomButtons'>
+                    <button className={`cardsButton1 ${actionStatus.endLesson ? 'remove' : ''}`}
+                      onClick={clickHard}>Repeat
+                    </button>
+                    <button className={`cardsButton2 ${actionStatus.endLesson ? 'remove' : ''}`}
+                      onClick={clickNext}>{actionStatus.wordCheck ? 'Next' : 'Check'}
+                    </button>
+                    <button onClick={
+                      () => setActionStatus((a) => ({
+                        ...a, startLesson: false
+                      }))}
                       className={
                         `cardsButton1 ${actionStatus.endLesson ? '' : 'remove'}`
-                        }>Exit</button>
+                      }>Exit</button>
+                  </div>
                 </div>
               </div>
             </div>
@@ -992,7 +1011,7 @@ function App() {
       return array.lesson === actionStatus.lessonNumber
     }
     const lessonsArray = cardWordsNew.filter(lessonCheck)
-    
+
 
     setShowWord(lessonsArray[0])
     setActionStatus((a) => ({
@@ -1009,7 +1028,7 @@ function App() {
   }
 
   const handleOption = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    setActionStatus((a) => ({...a, lessonNumber: parseFloat(event.target.value)}));
+    setActionStatus((a) => ({ ...a, lessonNumber: parseFloat(event.target.value) }));
   }
 
   //switch to new words and check translition
@@ -1080,8 +1099,7 @@ function App() {
   }, [showWord])
 
   const lessonPage = (lesson: number) => {
-    console.log(lesson)
-    setPracticeContent((p) => ({ ...p, lessonStart: !p.lessonStart }))
+    setActionStatus((a) => ({ ...a, lessonId: lesson }))
   }
 
   const lessonSelector = (lessonName: string, index: number) => {

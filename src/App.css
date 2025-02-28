@@ -249,7 +249,7 @@ span {
 }
 
 .gridHome {
-  justify-self: center;
+  margin: auto;
   justify-content: center;
   display: flex;
   flex-wrap: wrap;
@@ -404,7 +404,8 @@ span {
   margin-bottom: 2rem;
 }
 
-.headText, .headTextCards {
+.headText,
+.headTextCards {
   width: 100%;
   padding: 1rem 0 0 1rem;
   box-sizing: border-box;
@@ -597,6 +598,14 @@ span {
   mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0.912) 90%, rgba(0, 0, 0, 0));
 }
 
+.lessonShowBox {
+  margin-top: 2rem;
+  padding: 0.1rem 1rem 1rem 1rem;
+  border-radius: 0.3rem;
+  background-color: rgb(255, 255, 255);
+  box-shadow: 0 0 1rem rgba(0, 0, 0, 0.111);
+}
+
 .middleActions .lessonsContainer {
   height: calc(100vh - 14rem);
 }
@@ -756,8 +765,9 @@ span {
   justify-items: center;
   text-align: center;
 }
-.cardConteiner
-.inputQ, .inputA {
+
+.cardConteiner .inputQ,
+.inputA {
   margin: 1rem auto auto auto;
   padding: 0.5rem;
   align-content: center;
@@ -940,10 +950,10 @@ span {
 
 .cardsSelector {
   display: flex;
-  margin: 1rem auto 0 auto;
-  width: 30%;
+  width: 4rem;
   height: 2rem;
   min-height: fit-content;
+  min-width: fit-content;
   font-family: 'Figtree', 'Figtree-fallback', 'Figtree-fallback-android', 'Noto Sans', 'NotoSans-fallback', 'NotoSans-fallback-android', sans-serif;
   font-weight: bold;
   font-size: 1rem;
@@ -966,6 +976,13 @@ span {
   transition: 0.3s;
 }
 
+.selectorBox {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
 .cardBox {
   position: relative;
   display: flex;
@@ -978,6 +995,7 @@ span {
   background-color: rgb(255, 255, 255);
   border-radius: 1rem;
   box-shadow: 0 0 1rem rgba(0, 0, 0, 0.111);
+  transition: 0.3s;
 }
 
 .progressBarWords {
@@ -1005,8 +1023,7 @@ span {
 }
 
 .topJapanese {
-  margin: auto auto 1rem auto;
-  font-family: 'Figtree', 'Figtree-fallback', 'Figtree-fallback-android', 'Noto Sans', 'NotoSans-fallback', 'NotoSans-fallback-android', sans-serif;
+  margin: 1rem auto 1rem auto;
   font-size: 1.5rem;
   font-weight: bold;
 }
@@ -1014,6 +1031,8 @@ span {
 .bottomEng {
   margin: 0 auto;
   font-family: 'Figtree', 'Figtree-fallback', 'Figtree-fallback-android', 'Noto Sans', 'NotoSans-fallback', 'NotoSans-fallback-android', sans-serif;
+  font-size: 1rem;
+  height: fit-content;
   color: rgb(105, 105, 105);
 }
 
@@ -1070,8 +1089,7 @@ span {
   scale: 110%;
 }
 
-.cardsButtonStart{
-  scale: 120%;
+.cardsButtonStart {
   margin: 2rem 50% 0 50%;
   transform: translate(-50%);
 }
