@@ -3,6 +3,7 @@ import './App.css'
 import verbTGroup from './twords'
 import cardWordsNew from './vocabulary'
 import lessonShow from './lessonsList'
+import lessons from './lessons'
 
 //change repeat checker for hard words 
 
@@ -408,8 +409,10 @@ function App() {
     lessonType: '',
     headLine: '',
     pline: '',
+    progress: 0
   })
 
+  //tests for future
   const practiceQuestions = [
     {
       id: 1,
@@ -443,121 +446,7 @@ function App() {
     },
   ];
 
-  const lessons = [
-    {
-      name: 'Lesson 1 - Greetings & Introductions',
-      description: 'Learn essential Japanese greetings and self-introductions',
-      example: 'こんにちは、おはよう、こんばんは',
-      time: 30,
-      lvl: 'Basic',
-      number: 1
-    },
-    {
-      name: 'Lesson 2 - Numbers & Time',
-      description: 'Master counting, basic numbers, and telling time in Japanese',
-      example: 'いち、に、さん、なんじですか？',
-      time: 40,
-      lvl: 'Basic',
-      number: 2
-    },
-    {
-      name: 'Lesson 3 - Shopping & Asking Prices',
-      description: 'Learn vocabulary and phrases for shopping and handling money',
-      example: 'いくらですか？これをください',
-      time: 35,
-      lvl: 'Basic',
-      number: 3
-    },
-    {
-      name: 'Lesson 4 - Directions & Transportation',
-      description: 'Learn how to ask for directions and use public transport',
-      example: 'どこですか？電車はどこにありますか？',
-      time: 40,
-      lvl: 'Basic',
-      number: 4
-    },
-    {
-      name: 'Lesson 5 - Daily Activities',
-      description: 'Describe your daily routine and common activities',
-      example: 'おきます、ねます、はたらきます',
-      time: 30,
-      lvl: 'Basic',
-      number: 5
-    },
-    {
-      name: 'Lesson 6 - Food & Dining',
-      description: 'Learn vocabulary for food, drinks, and dining out',
-      example: 'たべます、のみます、レストラン',
-      time: 45,
-      lvl: 'Basic',
-      number: 6
-    },
-    {
-      name: 'Lesson 7 - Family & Relationships',
-      description: 'Talk about family members and relationships',
-      example: 'ちち、はは、あね、あに',
-      time: 35,
-      lvl: 'Basic',
-      number: 7
-    },
-    {
-      name: 'Lesson 8 - Work & Professions',
-      description: 'Learn vocabulary for workplaces and professions',
-      example: 'かいしゃいん、せんせい、エンジニア',
-      time: 40,
-      lvl: 'Basic',
-      number: 8
-    },
-    {
-      name: 'Lesson 9 - Hobbies & Interests',
-      description: 'Discuss hobbies, interests, and leisure activities',
-      example: 'スポーツ、えいが、ほんをよみます',
-      time: 30,
-      lvl: 'Basic',
-      number: 9
-    },
-    {
-      name: 'Lesson 10 - Weather & Seasons',
-      description: 'Learn how to talk about the weather and seasons',
-      example: 'あつい、さむい、あめ、ゆき',
-      time: 35,
-      lvl: 'Basic',
-      number: 10
-    },
-    {
-      name: 'Lesson 11 - Health & Body',
-      description: 'Learn vocabulary related to health and body parts',
-      example: 'あたま、て、あし、びょういん',
-      time: 40,
-      lvl: 'Basic',
-      number: 11
-    },
-    {
-      name: 'Lesson 12 - Colors & Adjectives',
-      description: 'Describe objects using colors and basic adjectives',
-      example: 'あかい、しろい、大きい、小さい',
-      time: 30,
-      lvl: 'Basic',
-      number: 12
-    },
-    {
-      name: 'Lesson 13 - Asking Questions',
-      description: 'Form and use questions in various contexts',
-      example: 'なに、どこ、いつ、どうして',
-      time: 35,
-      lvl: 'Basic',
-      number: 13
-    },
-    {
-      name: 'Lesson 14 - Verbs & Conjugation Basics',
-      description: 'Understand verb groups and learn basic conjugations',
-      example: 'たべます、のみます、いきます',
-      time: 50,
-      lvl: 'Intermediate',
-      number: 14
-    }
-  ]
-
+  //tests for future
   const lessonsArray = [
     {
       type: 'Translation',
@@ -573,10 +462,11 @@ function App() {
       description: 'Memorize which て-form group each verb belongs to for proper conjugation.',
       instructions: 'View the verb, recall its て-form group, check your answer, and move to the next card.',
       time: 30,
-      lvl: 'Intermediate',
+      lvl: 'Work in progress!',
     }
   ]
 
+  //Kanji for future
   const kanji = [
     {
       japanese: "国",
@@ -727,10 +617,11 @@ function App() {
                     <option value={2}>Lesson 2</option>
                   </select>
                   <button className={
-                    `cardsButtonStart ${actionStatus.startLesson ?
+                    `cardsButton2 ${actionStatus.startLesson ?
                       'remove' :
                       ''
                     }`}
+                    style={{ marginTop: '3rem' }}
                     onClick={cardStartLesson}
                   >Start
                   </button>
@@ -820,15 +711,15 @@ function App() {
               <div className='lessonsContainer'>
                 {lessonsArray.map((item, index) => {
                   return (
-                    <div key={index} onClick={
-                      () => lessonSelector(item.type, index)
-                    } className='lessonButtonTest'>
+                    <div key={index} className='lessonButtonTest'>
                       <div className='lvl'>{item.lvl}</div>
                       <h1 className='h1LessonButton'>{item.type}</h1>
                       <p className='pLessonButton'>{item.description}</p>
                       <div className='time'>{item.time} min</div>
                       <p className='text'><b>Instruction: </b><br />{item.instructions}</p>
-                      <button className='lessonSelectorButton'>Start lesson</button>
+                      <button disabled={item.lvl === 'Work in progress!' ? true : false} onClick={
+                        () => lessonSelector(item.type, index)
+                      } className='lessonSelectorButton'>Start lesson</button>
                     </div>
                   )
                 })}
@@ -843,7 +734,9 @@ function App() {
                   <button className={`exitButton ${practiceContent.lessonType === 'Translation' ? null : 'remove'}`}
                     onClick={() => lessonSelector('Exit', 0)}>❌</button>
                   <p className='pLesson'>Sentence {practiceContent.id + 1}/5</p>
-                  <div className='progressBarWords'></div>
+                  <div className='progressBarWords'
+                    style={{ '--before-width': `${practiceContent.progress}%` } as React.CSSProperties}>
+                  </div>
                   <div className='inputQ'>{practiceContent.question}</div>
                   <h2 className='h2Lesson'>Answer</h2>
                   <div className={`inputA ${practiceContent.isCorrect ? 'correct' : null}`}>{practiceContent.input}</div>
@@ -926,6 +819,20 @@ function App() {
               <input className='search' value={searchValue} onChange={handleInput} placeholder='Search'></input>
             </div>
             <div className='vocGrid'>
+              {cardWordsNew.map((item, index) => {
+                return (
+                  <div key={index} style={{ alignContent: 'center' }}
+                    className='wordHolderContainer'>
+                    <div className='wordTop'>
+                      {item.japanWord}
+                    </div>
+                    <div className='wordMiddle'>
+                      {item.meaning}
+                    </div>
+                  </div>
+                )
+              })
+              }
               {verbTGroup.map((item, index) => {
                 return (
                   <div key={index} className='wordHolderContainer'>
@@ -1106,7 +1013,8 @@ function App() {
     switch (lessonName) {
       case 'Translation':
         setPracticeContent((p) => ({
-          ...p, startPractice: !p.startPractice,
+          ...p,
+          startPractice: !p.startPractice,
           words: practiceQuestions[0].words,
           lessonType: 'Translation',
           headLine: lessonsArray[index].name,
@@ -1136,10 +1044,16 @@ function App() {
       case 'Exit':
         setPracticeContent((p) => ({
           ...p, startPractice: !p.startPractice,
-          id: 0,
+          words: practiceQuestions[0].words,
+          answer: practiceQuestions[0].answer,
+          question: practiceQuestions[0].question,
           lessonType: '',
-          headLine: '',
-          pline: ''
+          headLine: lessonsArray[0].name,
+          pline: lessonsArray[0].instructions,
+          input: '',
+          isCorrect: false,
+          progress: 0,
+          id: 0
         }))
         break;
 
@@ -1220,7 +1134,7 @@ function App() {
   const answerCheck = (answerUser: string) => {
     if (practiceContent.answer === answerUser) {
       console.log('Correct')
-      setPracticeContent((p) => ({ ...p, isCorrect: true, input: p.input + ' Correct!' }))
+      setPracticeContent((p) => ({ ...p, isCorrect: true, input: p.input + ' Correct!', progress: p.progress + 20 }))
     } else {
       setPracticeContent((p) => ({ ...p, input: 'Incorrect' }))
       console.log('Incorrect')
@@ -1229,7 +1143,7 @@ function App() {
 
   const newLessonPage = (newId: number) => {
     if (practiceContent.id === 4) {
-      setPracticeContent((p) => ({ ...p, id: newId++ }))
+      return
     } else {
       let newContent = practiceQuestions[newId + 1]
       setPracticeContent((p) => ({
@@ -1239,7 +1153,7 @@ function App() {
         words: newContent.words,
         answer: newContent.answer,
         input: '',
-        isCorrect: false,
+        isCorrect: false
       }))
     }
   }
@@ -1279,11 +1193,11 @@ function App() {
           {/* <button className='buttonMenu' onClick={() => newPageStatus('Kanji')}>
             <div className='kanji'></div>
             <span> Kanji </span>
-          </button>
+          </button>  */}
           <button className='buttonMenu' onClick={() => newPageStatus('Test')}>
             <div className='checkBoolean'></div>
             <span> Test </span>
-          </button> */}
+          </button>
           <button className='buttonMenu' onClick={() => newPageStatus('Vocabulary')}>
             <div className='vocabulary'></div>
             <span> Vocabulary </span>
@@ -1334,10 +1248,10 @@ function App() {
             </button>
             {/* <button className='buttonMenu' onClick={() => newPageStatus('Kanji')}>
               <span> Kanji </span>
-            </button>
+            </button> */}
             <button className='buttonMenu' onClick={() => newPageStatus('Test')}>
               <span> Test </span>
-            </button> */}
+            </button>
             <button className='buttonMenu' onClick={() => newPageStatus('Vocabulary')}>
               <span> Vocabulary </span>
             </button>
