@@ -573,13 +573,13 @@ function App() {
             <div className='lessonsContainer' style={{ display: actionStatus.lessonId > 0 ? 'none' : '' }}>
               {lessons.map((item, index) => {
                 return (
-                  <div key={index} onClick={() => lessonPage(index + 1)} className='lessonSelectorBox'>
+                  <div key={index} className='lessonSelectorBox'>
                     <div className='lvl'>{item.lvl}</div>
                     <h1 className='h1LessonButton'>{item.name}</h1>
                     <p className='pLessonButton'>{item.description}</p>
                     <div className='time'>{item.time} min</div>
                     <p className='text'><b>Examples: </b><br />{item.example}</p>
-                    <button className='lessonSelectorButton'>Start lesson</button>
+                    <button disabled={item.number <= 2 ? false : true} onClick={() => lessonPage(index + 1)} className='lessonSelectorButton'>Start lesson</button>
                   </div>
                 )
               })}
